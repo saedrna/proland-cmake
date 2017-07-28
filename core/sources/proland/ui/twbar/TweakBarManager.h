@@ -70,7 +70,7 @@ namespace proland
  * @ingroup twbar
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class TweakBarManager : public EventHandler
+class PROLAND_API TweakBarManager : public EventHandler
 {
 public:
     /**

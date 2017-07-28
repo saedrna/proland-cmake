@@ -63,7 +63,7 @@ namespace proland
  * @ingroup screen
  * @author Antoine Begault
  */
-PROLAND_API class ParticleGrid : public Object
+class PROLAND_API ParticleGrid : public Object
 {
 public:
     /**

@@ -60,7 +60,7 @@ namespace proland
  * @ingroup terrain
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class DrawTerrainTask : public AbstractTask
+class PROLAND_API DrawTerrainTask : public AbstractTask
 {
 public:
     /**

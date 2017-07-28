@@ -70,7 +70,7 @@ namespace proland
  * @ingroup particles
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class ParticleProducer : public Object
+class PROLAND_API ParticleProducer : public Object
 {
 public:
     /**

@@ -50,7 +50,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault
  */
-PROLAND_API class GraphListener
+class PROLAND_API GraphListener
 {
 public:
     /**

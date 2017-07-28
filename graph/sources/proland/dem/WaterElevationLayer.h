@@ -54,7 +54,7 @@ namespace proland
  * @ingroup dem
  * @authors Antoine Begault, Eric Bruneton, Guillaume Piolat
  */
-PROLAND_API class WaterElevationLayer : public ElevationGraphLayer
+class PROLAND_API WaterElevationLayer : public ElevationGraphLayer
 {
 public:
     /**

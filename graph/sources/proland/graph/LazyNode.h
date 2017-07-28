@@ -56,7 +56,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault
  */
-PROLAND_API class LazyNode : public Node
+class PROLAND_API LazyNode : public Node
 {
 public:
     /**

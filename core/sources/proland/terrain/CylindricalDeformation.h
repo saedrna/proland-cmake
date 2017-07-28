@@ -55,7 +55,7 @@ namespace proland
  * @ingroup terrain
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class CylindricalDeformation : public Deformation
+class PROLAND_API CylindricalDeformation : public Deformation
 {
 public:
     /**

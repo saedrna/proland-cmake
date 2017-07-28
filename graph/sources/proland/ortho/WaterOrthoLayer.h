@@ -52,7 +52,7 @@ namespace proland
  * @ingroup ortho
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class WaterOrthoLayer : public GraphLayer
+class PROLAND_API WaterOrthoLayer : public GraphLayer
 {
 public:
     /**

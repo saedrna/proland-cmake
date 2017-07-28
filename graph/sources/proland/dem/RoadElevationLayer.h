@@ -54,7 +54,7 @@ namespace proland
  * @ingroup dem
  * @authors Antoine Begault, Eric Bruneton, Guillaume Piolat
  */
-PROLAND_API class RoadElevationLayer : public ElevationGraphLayer
+class PROLAND_API RoadElevationLayer : public ElevationGraphLayer
 {
 public:
     /**

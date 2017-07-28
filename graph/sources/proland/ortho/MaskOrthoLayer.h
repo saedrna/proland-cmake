@@ -54,7 +54,7 @@ namespace proland
  * @ingroup ortho
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class MaskOrthoLayer : public GraphLayer
+class PROLAND_API MaskOrthoLayer : public GraphLayer
 {
 public:
     /**

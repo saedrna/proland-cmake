@@ -63,7 +63,7 @@ namespace proland
  * @ingroup plants
  * @author Eric Bruneton
  */
-PROLAND_API class DrawPlantsShadowTask : public AbstractTask
+class PROLAND_API DrawPlantsShadowTask : public AbstractTask
 {
 public:
     /**

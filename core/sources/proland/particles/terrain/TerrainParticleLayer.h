@@ -68,7 +68,7 @@ namespace proland
  * @ingroup terrainl
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class TerrainParticleLayer : public ParticleLayer
+class PROLAND_API TerrainParticleLayer : public ParticleLayer
 {
 public:
     /**

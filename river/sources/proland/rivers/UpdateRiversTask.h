@@ -67,7 +67,7 @@ namespace proland
  * @ingroup rivers
  * @author Antoine Begault
  */
-PROLAND_API class UpdateRiversTask : public AbstractTask
+class PROLAND_API UpdateRiversTask : public AbstractTask
 {
 public:
     /**

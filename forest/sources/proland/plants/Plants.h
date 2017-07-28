@@ -60,7 +60,7 @@ namespace proland
  * @ingroup plants
  * @author Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class Plants : public Object
+class PROLAND_API Plants : public Object
 {
 public:
     /**

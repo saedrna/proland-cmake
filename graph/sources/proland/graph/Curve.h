@@ -118,7 +118,7 @@ PROLAND_API struct Vertex : public vec2d
  * @ingroup graph
  * @authors AntoineBegault, Guillaume Piolat
  */
-PROLAND_API class Curve : public Object
+class PROLAND_API Curve : public Object
 {
 
 public:

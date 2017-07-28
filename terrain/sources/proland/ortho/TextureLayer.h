@@ -61,7 +61,7 @@ namespace proland
  * @ingroup ortho
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class TextureLayer : public TileLayer
+class PROLAND_API TextureLayer : public TileLayer
 {
 public:
     /**

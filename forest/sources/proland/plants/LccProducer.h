@@ -58,7 +58,7 @@ namespace proland
  * @ingroup plants
  * @author Eric Bruneton
  */
-PROLAND_API class LccProducer : public TileProducer
+class PROLAND_API LccProducer : public TileProducer
 {
 public:
     LccProducer(ptr<TileProducer> delegate, ptr<Plants> plants, ptr<Texture2D> lccTexture,

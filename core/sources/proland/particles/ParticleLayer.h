@@ -55,7 +55,7 @@ class ParticleProducer;
  * @ingroup particles
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class ParticleLayer : public Object
+class PROLAND_API ParticleLayer : public Object
 {
 public:
     /**

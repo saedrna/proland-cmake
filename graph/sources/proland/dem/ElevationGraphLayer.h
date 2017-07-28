@@ -60,7 +60,7 @@ namespace proland
  * @ingroup dem
  * @authors Antoine Begault, Eric Bruneton
  */
-PROLAND_API class ElevationGraphLayer : public GraphLayer, public CurveDataFactory
+class PROLAND_API ElevationGraphLayer : public GraphLayer, public CurveDataFactory
 {
 public:
     /**

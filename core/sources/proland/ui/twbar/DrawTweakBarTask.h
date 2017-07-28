@@ -60,7 +60,7 @@ namespace proland
  * @ingroup twbar
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class DrawTweakBarTask : public AbstractTask
+class PROLAND_API DrawTweakBarTask : public AbstractTask
 {
 public:
     /**

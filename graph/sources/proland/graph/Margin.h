@@ -56,7 +56,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault
  */
-PROLAND_API class Margin
+class PROLAND_API Margin
 {
 public:
     /**

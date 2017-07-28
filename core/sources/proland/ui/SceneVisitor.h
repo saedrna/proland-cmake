@@ -62,7 +62,7 @@ namespace proland
  * @ingroup proland_ui
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class SceneVisitor : public Object
+class PROLAND_API SceneVisitor : public Object
 {
 public:
     /**

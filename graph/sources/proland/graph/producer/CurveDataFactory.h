@@ -54,7 +54,7 @@ namespace proland
  * @ingroup producer
  * @author Antoine Begault
  */
-PROLAND_API class CurveDataFactory : public GraphListener
+class PROLAND_API CurveDataFactory : public GraphListener
 {
 public:
     /**

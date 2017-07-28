@@ -55,7 +55,7 @@ namespace proland
  * @ingroup ocean
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class DrawOceanFFTTask : public AbstractTask
+class PROLAND_API DrawOceanFFTTask : public AbstractTask
 {
 public:
     /**

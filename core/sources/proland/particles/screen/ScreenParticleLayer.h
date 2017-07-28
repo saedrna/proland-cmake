@@ -75,7 +75,7 @@ class RangeList;
  * @ingroup screen
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class ScreenParticleLayer : public ParticleLayer
+class PROLAND_API ScreenParticleLayer : public ParticleLayer
 {
 public:
     /**

@@ -61,7 +61,7 @@ namespace proland
  * @ingroup dem
  * @authors Antoine Begault, Eric Bruneton, Guillaume Piolat
  */
-PROLAND_API class ElevationCurveData : public CurveData
+class PROLAND_API ElevationCurveData : public CurveData
 {
 public:
     /**

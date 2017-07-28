@@ -58,7 +58,7 @@ namespace proland
  * @ingroup twbar
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class TweakSceneGraph : public TweakBarHandler
+class PROLAND_API TweakSceneGraph : public TweakBarHandler
 {
 public:
     struct TextureInfo

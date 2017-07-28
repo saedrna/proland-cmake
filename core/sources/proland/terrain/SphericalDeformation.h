@@ -56,7 +56,7 @@ namespace proland
  * @ingroup terrain
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class SphericalDeformation : public Deformation
+class PROLAND_API SphericalDeformation : public Deformation
 {
 public:
     /**

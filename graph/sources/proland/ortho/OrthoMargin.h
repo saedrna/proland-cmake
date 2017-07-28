@@ -53,7 +53,7 @@ namespace proland
  * @ingroup ortho
  * @author Antoine Begault
  */
-PROLAND_API class OrthoMargin : public Margin
+class PROLAND_API OrthoMargin : public Margin
 {
 public:
     /**

@@ -55,7 +55,7 @@ namespace proland
  * @ingroup terrain
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class UpdateTileSamplersTask : public AbstractTask
+class PROLAND_API UpdateTileSamplersTask : public AbstractTask
 {
 public:
     /**

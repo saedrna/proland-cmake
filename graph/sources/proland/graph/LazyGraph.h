@@ -67,7 +67,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class LazyGraph : public Graph
+class PROLAND_API LazyGraph : public Graph
 {
 public:
     /**

@@ -83,7 +83,7 @@ namespace proland
  * - Screen flickers when using postProcess method.
  * - Bad depths retrieved for particles on some viewpoints.
  */
-PROLAND_API class DrawRiversTask : public AbstractTask
+class PROLAND_API DrawRiversTask : public AbstractTask
 {
 public:
     enum MeshDisplayType {

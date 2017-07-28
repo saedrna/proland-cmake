@@ -53,7 +53,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault
  */
-PROLAND_API class BasicCurvePart : public CurvePart
+class PROLAND_API BasicCurvePart : public CurvePart
 {
 public:
     /**

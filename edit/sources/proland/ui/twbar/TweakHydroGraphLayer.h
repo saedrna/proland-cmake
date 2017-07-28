@@ -53,7 +53,7 @@ namespace proland
  * @ingroup twbar
  * @author Antoine Begault
  */
-PROLAND_API class TweakHydroGraphLayer : public TweakGraphLayer
+class PROLAND_API TweakHydroGraphLayer : public TweakGraphLayer
 {
 public:
     TweakHydroGraphLayer(bool active);

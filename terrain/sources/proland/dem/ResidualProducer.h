@@ -58,7 +58,7 @@ namespace proland
  * @ingroup dem
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class ResidualProducer : public TileProducer
+class PROLAND_API ResidualProducer : public TileProducer
 {
 public:
     /**

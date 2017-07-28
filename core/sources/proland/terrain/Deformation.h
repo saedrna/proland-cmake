@@ -68,7 +68,7 @@ class TerrainNode;
  * @ingroup terrain
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class Deformation : public Object
+class PROLAND_API Deformation : public Object
 {
 public:
     /**

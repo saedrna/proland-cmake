@@ -54,7 +54,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class BasicGraph : public Graph
+class PROLAND_API BasicGraph : public Graph
 {
 public:
     /**

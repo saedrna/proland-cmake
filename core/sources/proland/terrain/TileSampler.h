@@ -61,7 +61,7 @@ namespace proland
  * @ingroup terrain
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class TileSampler : public Object
+class PROLAND_API TileSampler : public Object
 {
 public:
     /**

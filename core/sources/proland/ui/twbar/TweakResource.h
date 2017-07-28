@@ -58,7 +58,7 @@ namespace proland
  * @ingroup twbar
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class TweakResource : public TweakBarHandler
+class PROLAND_API TweakResource : public TweakBarHandler
 {
 public:
     /**

@@ -59,7 +59,7 @@ namespace proland
  * @ingroup ortho
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class OrthoProducer : public TileProducer
+class PROLAND_API OrthoProducer : public TileProducer
 {
 public:
     /**

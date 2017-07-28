@@ -54,7 +54,7 @@ namespace proland
  * @ingroup dem
  * @authors Antoine Begault, Eric Bruneton
  */
-PROLAND_API class ElevationMargin : public Margin
+class PROLAND_API ElevationMargin : public Margin
 {
 public:
     /**

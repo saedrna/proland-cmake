@@ -57,7 +57,7 @@ namespace proland
  * @ingroup rivers
  * @author Antoine Begault
  */
-PROLAND_API class WaveTile : public Object
+class PROLAND_API WaveTile : public Object
 {
 public:
     /**

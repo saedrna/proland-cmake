@@ -196,7 +196,7 @@ inline bool operator ==(const GraphId &u, const GraphId &v)
  * @ingroup graph
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class Graph : public Object
+class PROLAND_API Graph : public Object
 {
 public:
     /**

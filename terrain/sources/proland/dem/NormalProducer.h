@@ -57,7 +57,7 @@ namespace proland
  * @ingroup dem
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class NormalProducer : public TileProducer
+class PROLAND_API NormalProducer : public TileProducer
 {
 public:
     /**

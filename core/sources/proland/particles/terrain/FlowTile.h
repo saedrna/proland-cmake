@@ -59,7 +59,7 @@ namespace proland
  * @ingroup terrainl
  * @author Antoine Begault
  */
-PROLAND_API class FlowTile : public Object
+class PROLAND_API FlowTile : public Object
 {
 public:
     /**

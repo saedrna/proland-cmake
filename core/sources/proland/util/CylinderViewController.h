@@ -57,7 +57,7 @@ namespace proland
  * @ingroup proland_util
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class CylinderViewController : public TerrainViewController
+class PROLAND_API CylinderViewController : public TerrainViewController
 {
 public:
     /**

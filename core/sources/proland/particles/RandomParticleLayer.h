@@ -56,7 +56,7 @@ namespace proland
  * @ingroup particles
  * @authors Antoine Begault, Eric Bruneton
  */
-PROLAND_API class RandomParticleLayer : public ParticleLayer
+class PROLAND_API RandomParticleLayer : public ParticleLayer
 {
 public:
     /**

@@ -55,7 +55,7 @@ namespace proland
  * @ingroup particles
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class LifeCycleParticleLayer : public ParticleLayer
+class PROLAND_API LifeCycleParticleLayer : public ParticleLayer
 {
 public:
     /**

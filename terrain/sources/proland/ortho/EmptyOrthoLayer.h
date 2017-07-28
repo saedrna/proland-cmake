@@ -57,7 +57,7 @@ namespace proland
  * @ingroup ortho
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class EmptyOrthoLayer : public TileLayer
+class PROLAND_API EmptyOrthoLayer : public TileLayer
 {
 public:
     /**

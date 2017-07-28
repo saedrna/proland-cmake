@@ -56,7 +56,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class LazyArea : public Area
+class PROLAND_API LazyArea : public Area
 {
 public:
     /**

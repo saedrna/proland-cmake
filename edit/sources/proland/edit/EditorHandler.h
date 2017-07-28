@@ -64,7 +64,7 @@ namespace proland
  * @ingroup edit
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class Editor
+class PROLAND_API Editor
 {
 public:
     Editor(string name="Editor", string group="defaultGroup", bool active = true);
@@ -141,7 +141,7 @@ private:
  * An EventHandler to paint on terrains and pass %edit events
  * to one or more Editor objects.
  */
-PROLAND_API class EditorHandler : public EventHandler
+class PROLAND_API EditorHandler : public EventHandler
 {
 public:
     /**

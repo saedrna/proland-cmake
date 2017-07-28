@@ -55,7 +55,7 @@ namespace proland
  * @ingroup rivergraph
  * @author Antoine Begault
  */
-PROLAND_API class HydroCurve : public Curve
+class PROLAND_API HydroCurve : public Curve
 {
 public:
     /**

@@ -59,7 +59,7 @@ namespace proland
  * @ingroup rivers
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class HydroFlowProducer : public TileProducer, public CurveDataFactory
+class PROLAND_API HydroFlowProducer : public TileProducer, public CurveDataFactory
 {
 public:
     /**

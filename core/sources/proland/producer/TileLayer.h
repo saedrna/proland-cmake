@@ -63,7 +63,7 @@ namespace proland
  * @ingroup producer
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class TileLayer : public Object
+class PROLAND_API TileLayer : public Object
 {
 public:
     /**

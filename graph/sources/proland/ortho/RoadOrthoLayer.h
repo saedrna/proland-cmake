@@ -53,7 +53,7 @@ namespace proland
  * @ingroup ortho
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class RoadOrthoLayer : public GraphLayer, public CurveDataFactory
+class PROLAND_API RoadOrthoLayer : public GraphLayer, public CurveDataFactory
 {
 public:
     /**

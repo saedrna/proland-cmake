@@ -62,7 +62,7 @@ namespace proland
  * @ingroup proland_ui
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class Recordable
+class PROLAND_API Recordable
 {
 public:
     /**
@@ -94,7 +94,7 @@ public:
  * EventRecorder.
  * @ingroup proland_ui
  */
-PROLAND_API class EventRecorder : public EventHandler
+class PROLAND_API EventRecorder : public EventHandler
 {
 public:
     /**

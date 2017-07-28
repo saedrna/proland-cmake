@@ -55,7 +55,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault
  */
-PROLAND_API class LazyCurve : public Curve
+class PROLAND_API LazyCurve : public Curve
 {
 public:
     /**

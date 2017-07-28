@@ -64,7 +64,7 @@ namespace proland
  * @ingroup edit
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class EditElevationProducer : public ElevationProducer, public Editor
+class PROLAND_API EditElevationProducer : public ElevationProducer, public Editor
 {
 public:
     /**

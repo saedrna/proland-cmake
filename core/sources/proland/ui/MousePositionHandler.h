@@ -64,7 +64,7 @@ namespace proland
  * @ingroup proland_ui
  * @author Antoine Begault
  */
-PROLAND_API class MousePositionHandler : public EventHandler
+class PROLAND_API MousePositionHandler : public EventHandler
 {
 public:
     /**

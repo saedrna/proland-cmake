@@ -62,7 +62,7 @@ namespace proland
  * @ingroup ocean
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class DrawOceanTask : public AbstractTask
+class PROLAND_API DrawOceanTask : public AbstractTask
 {
 public:
     /**

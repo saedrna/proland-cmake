@@ -58,7 +58,7 @@ namespace proland
  * @ingroup terrain
  * @authors Eric Bruneton, Antoine Begault
 */
-PROLAND_API class ReadbackManager : public Object
+class PROLAND_API ReadbackManager : public Object
 {
 public:
     /**

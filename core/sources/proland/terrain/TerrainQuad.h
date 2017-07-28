@@ -62,7 +62,7 @@ class TerrainNode;
  * @ingroup terrain
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class TerrainQuad : public Object
+class PROLAND_API TerrainQuad : public Object
 {
 public:
     /**

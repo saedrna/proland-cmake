@@ -58,7 +58,7 @@ class GraphLayer;
  * @ingroup producer
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class CurveData
+class PROLAND_API CurveData
 {
 public:
     /**

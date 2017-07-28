@@ -61,7 +61,7 @@ namespace proland
  * @ingroup plants
  * @author Eric Bruneton
  */
-PROLAND_API class PlantsProducer : public TileProducer
+class PROLAND_API PlantsProducer : public TileProducer
 {
 public:
     /**

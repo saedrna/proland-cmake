@@ -61,7 +61,7 @@ namespace proland
  * @ingroup producer
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class GraphLayer : public TileLayer
+class PROLAND_API GraphLayer : public TileLayer
 {
 public:
     /**

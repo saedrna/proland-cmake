@@ -52,7 +52,7 @@ namespace proland
  * @ingroup producer
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class ObjectTileStorage : public TileStorage
+class PROLAND_API ObjectTileStorage : public TileStorage
 {
 public:
     /**

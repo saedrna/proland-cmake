@@ -59,7 +59,7 @@ namespace proland
  * @ingroup edit
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class EditOrthoProducer : public OrthoProducer, public Editor
+class PROLAND_API EditOrthoProducer : public OrthoProducer, public Editor
 {
 public:
     /**

@@ -56,7 +56,7 @@ namespace proland
  * @ingroup producer
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class GPUTileStorage : public TileStorage
+class PROLAND_API GPUTileStorage : public TileStorage
 {
 public:
     /**

@@ -60,7 +60,7 @@ namespace proland
  * @ingroup preprocess
  * @author Eric Bruneton
  */
-PROLAND_API class TreeMesh
+class PROLAND_API TreeMesh
 {
 public:
     struct Vertex

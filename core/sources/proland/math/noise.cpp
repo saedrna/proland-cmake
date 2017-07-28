@@ -43,7 +43,7 @@
 /* (copyright Ken Perlin) */
 
 // SimplexNoise1234
-// Copyright © 2003-2005, Stefan Gustavson
+// Copyright ?2003-2005, Stefan Gustavson
 //
 // Contact: stegu@itn.liu.se
 //

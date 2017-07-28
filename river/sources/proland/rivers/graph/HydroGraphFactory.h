@@ -52,7 +52,7 @@ namespace proland
  * @ingroup rivergraph
  * @author Antoine Begault
  */
-PROLAND_API class HydroGraphFactory : public GraphProducer::GraphFactory
+class PROLAND_API HydroGraphFactory : public GraphProducer::GraphFactory
 {
 public:
     /**

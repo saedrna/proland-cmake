@@ -56,7 +56,7 @@ namespace proland
  * @ingroup producer
  * @author Antoine Begault
  */
-PROLAND_API class Tesselator : public Object
+class PROLAND_API Tesselator : public Object
 {
 public:
     /**

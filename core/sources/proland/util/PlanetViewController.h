@@ -57,7 +57,7 @@ namespace proland
  * @ingroup proland_util
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class PlanetViewController : public TerrainViewController
+class PROLAND_API PlanetViewController : public TerrainViewController
 {
 public:
     /**

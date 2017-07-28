@@ -67,7 +67,7 @@ namespace proland
  * @ingroup producer
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class GraphProducer : public TileProducer, public GraphListener
+class PROLAND_API GraphProducer : public TileProducer, public GraphListener
 {
 public:
     /**

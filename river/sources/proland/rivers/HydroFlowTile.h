@@ -63,7 +63,7 @@ namespace proland
  * @ingroup rivers
  * @author Antoine Begault
  */
-PROLAND_API class HydroFlowTile: public FlowTile
+class PROLAND_API HydroFlowTile: public FlowTile
 {
 public:
     /**

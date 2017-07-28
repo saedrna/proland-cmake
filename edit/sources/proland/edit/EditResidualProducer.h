@@ -53,7 +53,7 @@ namespace proland
  * @ingroup edit
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class EditResidualProducer : public ResidualProducer
+class PROLAND_API EditResidualProducer : public ResidualProducer
 {
 public:
     /**

@@ -55,7 +55,7 @@ namespace proland
  * @ingroup preprocess
  * @author Eric Bruneton
  */
-PROLAND_API class AtmoParameters
+class PROLAND_API AtmoParameters
 {
 public:
     float Rg;

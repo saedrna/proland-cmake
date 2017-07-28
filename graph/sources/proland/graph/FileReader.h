@@ -58,7 +58,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault
  */
-PROLAND_API class FileReader
+class PROLAND_API FileReader
 {
 public:
     /**

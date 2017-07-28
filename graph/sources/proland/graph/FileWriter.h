@@ -58,7 +58,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault
  */
-PROLAND_API class FileWriter
+class PROLAND_API FileWriter
 {
 public:
     /**

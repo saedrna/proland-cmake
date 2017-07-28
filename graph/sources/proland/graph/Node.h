@@ -54,7 +54,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault
  */
-PROLAND_API class Node : public Object
+class PROLAND_API Node : public Object
 {
 public:
     /**

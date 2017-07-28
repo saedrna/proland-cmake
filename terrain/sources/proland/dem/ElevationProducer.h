@@ -72,7 +72,7 @@ namespace proland
  * @ingroup dem
  * @authors Eric Bruneton, Antoine Begault
  */
-PROLAND_API class ElevationProducer : public TileProducer
+class PROLAND_API ElevationProducer : public TileProducer
 {
 public:
     /**
