@@ -101,7 +101,7 @@ public:
     /**
      * A TerrainViewController position and a light source position.
      */
-    struct Position {
+    struct PROLAND_API Position {
 
         double x0, y0, theta, phi, d, sx, sy, sz;
 
