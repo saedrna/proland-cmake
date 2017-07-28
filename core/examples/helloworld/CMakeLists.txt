@@ -15,7 +15,7 @@ set(EXECUTABLE_OUTPUT_PATH "${EXECUTABLE_OUTPUT_PATH}${EXAMPLE_EXE_PATH}")
 message(STATUS "Setting example output dir: " ${EXECUTABLE_OUTPUT_PATH})
 
 add_executable(${EXENAME} ${SOURCE_FILES})
-target_link_libraries(${EXENAME} proland-core ork)
+target_link_libraries(${EXENAME} proland-core ${PROLAND_3RDPARTY_LIBRARIES})
 
 # Copy all files in source tree, except this CMakeLists.txt
 add_custom_command(TARGET ${EXENAME} POST_BUILD
