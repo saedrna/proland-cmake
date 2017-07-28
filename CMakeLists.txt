@@ -25,6 +25,8 @@ find_package(anttweakbar REQUIRED) # anttweakbar::anttweakbar
 find_package(TIFF REQUIRED) # TIFF::TIFF
 set(PROLAND_3RDPARTY_LIBRARIES ork::ork pthread::pthread anttweakbar::anttweakbar TIFF::TIFF)
 
+set_target_properties(${PROLAND_3RDPARTY_LIBRARIES} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
+
 option(BUILD_SHARED_LIBS    "Build shared library instead of static"   ON)
 option(BUILD_EXAMPLES       "Build examples"                           ON )
 #option(BUILD_TESTS       "Build tests"                              ON )

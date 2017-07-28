@@ -1,2 +1,2 @@
 <?xml version="1.0" ?>
-<texture name="lucidaConsole" source="lucidaConsole.png" internalformat="R8" min="LINEAR_MIPMAP_LINEAR" mag="LINEAR"/>
+<texture2D name="lucidaConsole" source="lucidaConsole.png" internalformat="R8" min="LINEAR_MIPMAP_LINEAR" mag="LINEAR"/>
