@@ -270,22 +270,22 @@ struct UniformData : public TweakResource::Data
     }
 };
 
-TW_CALL void GetEnumCallback(void *value, void *clientData)
+void TW_CALL GetEnumCallback(void *value, void *clientData)
 {
     *((int*) value) = ((EnumData*) clientData)->getValue();
 }
 
-TW_CALL void SetEnumCallback(const void *value, void *clientData)
+void TW_CALL SetEnumCallback(const void *value, void *clientData)
 {
     ((EnumData*) clientData)->setValue(*((int*) value));
 }
 
-TW_CALL void GetUniformCallback(void *value, void *clientData)
+void TW_CALL GetUniformCallback(void *value, void *clientData)
 {
     ((UniformData*) clientData)->getValue((float*) value);
 }
 
-TW_CALL void SetUniformCallback(const void *value, void *clientData)
+void TW_CALL SetUniformCallback(const void *value, void *clientData)
 {
     ((UniformData*) clientData)->setValue((const float*) value);
 }

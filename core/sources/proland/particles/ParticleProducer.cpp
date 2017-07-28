@@ -45,6 +45,7 @@
 #include "ork/render/CPUBuffer.h"
 #include "ork/resource/ResourceTemplate.h"
 
+#include <algorithm>
 using namespace std;
 using namespace ork;
 
@@ -193,7 +194,7 @@ ptr<Texture2D> ParticleProducer::copyToTexture(ptr<Texture2D> t, int paramCount,
             getParams(this, p, params + 4 * width * h);
             ++h;
         }
-        maxHeight = max(maxHeight, h);
+        maxHeight = std::max(maxHeight, h);
     }
 
     if (maxHeight > 0) {

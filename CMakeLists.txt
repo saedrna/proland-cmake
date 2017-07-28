@@ -19,56 +19,85 @@ if(NOT CMAKE_BUILD_TYPE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 # Common deps
-find_package(PkgConfig)
-#find_package(ork REQUIRED)
-
-PKG_CHECK_MODULES(ORK REQUIRED ork)
-include_directories(${ORK_INCLUDE_DIRS})
-link_directories(${ORK_LIBRARY_DIRS})
-add_definitions(${ORK_CFLAGS})
-message( STATUS "Found ork? " ${ORK_FOUND})
-message(STATUS "ork include_directories: " ${ORK_INCLUDE_DIRS})
-message(STATUS "ork link_directories:    " ${ORK_LIBRARY_DIRS})
-message(STATUS "ork add_definitions:     " ${ORK_CFLAGS})
-
-#find_package(GLUT)
-
-set(LIB_INSTALL_DIR "lib" CACHE STRING "Library directory name (lib/lib32/lib64)" )
+find_package(ork REQUIRED) # ork::ork
+find_package(pthread REQUIRED) # pthread::pthread
+find_package(anttweakbar REQUIRED) # anttweakbar::anttweakbar
+set(PROLAND_3RDPARTY_LIBRARIES ork::ork pthread::pthread anttweakbar::anttweakbar)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-add_definitions("-DPROLAND_API=" "-fPIC")
 
-option(BUILD_SHARED      "Build shared library instead of static"   OFF)
-option(BUILD_EXAMPLES    "Build examples"                           ON )
+option(BUILD_SHARED_LIBS    "Build shared library instead of static"   ON)
+option(BUILD_EXAMPLES       "Build examples"                           ON )
 #option(BUILD_TESTS       "Build tests"                              ON )
 
 #General compiler options:
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4251")
+endif(MSVC)
+
 message(STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
 
 # Sub dirs
 #add_subdirectory(libraries)
 add_subdirectory(core)
-add_subdirectory(terrain)
-add_subdirectory(atmo)
-add_subdirectory(ocean)
-add_subdirectory(forest)
-add_subdirectory(river)
-add_subdirectory(graph)
-add_subdirectory(edit)
+# add_subdirectory(terrain)
+# add_subdirectory(atmo)
+# add_subdirectory(ocean)
+# add_subdirectory(forest)
+# add_subdirectory(river)
+# add_subdirectory(graph)
+# add_subdirectory(edit)
 
 if(BUILD_EXAMPLES)
 	add_subdirectory(core/examples)
-    add_subdirectory(terrain/examples)
-    add_subdirectory(atmo/examples)
-    add_subdirectory(ocean/examples)
-    add_subdirectory(forest/examples)
-    add_subdirectory(graph/examples)
-    add_subdirectory(river/examples)
-    add_subdirectory(edit/examples)
+    # add_subdirectory(terrain/examples)
+    # add_subdirectory(atmo/examples)
+    # add_subdirectory(ocean/examples)
+    # add_subdirectory(forest/examples)
+    # add_subdirectory(graph/examples)
+    # add_subdirectory(river/examples)
+    # add_subdirectory(edit/examples)
 endif(BUILD_EXAMPLES)
 
-add_subdirectory(demo)
+# add_subdirectory(demo)
 
 #if(BUILD_TESTS)
 #	add_subdirectory(test)
 #endif(BUILD_TESTS)
+
+# Layout. This works for all platforms:
+#   * <prefix>/lib/cmake/<PROJECT-NAME>
+#   * <prefix>/lib/
+#   * <prefix>/include/
+set(config_install_dir "cmake/proland")
+set(include_install_dir "include")
+
+set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
+
+# Configuration
+set(version_config "${generated_dir}/proland-config-version.cmake")
+set(project_config "${generated_dir}/proland-config.cmake")
+set(targets_export_name "proland-targets")
+set(namespace "proland::")
+
+# Include module with fuction 'write_basic_package_version_file'
+include(CMakePackageConfigHelpers)
+
+write_basic_package_version_file(
+    "${version_config}" COMPATIBILITY SameMajorVersion VERSION ${PROLAND_VERSION}
+)
+
+configure_package_config_file(
+    "config.cmake.in"
+    "${project_config}"
+    INSTALL_DESTINATION "${config_install_dir}"
+)
+
+install(
+    FILES "${project_config}" "${version_config}"
+    DESTINATION "${config_install_dir}"
+)
+
+install(EXPORT proland-targets 
+	    NAMESPACE proland::
+		DESTINATION cmake/proland)

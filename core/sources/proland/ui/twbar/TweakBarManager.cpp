@@ -47,19 +47,18 @@
 #include "ork/ui/Window.h"
 
 #include "proland/ui/twbar/TweakBarHandler.h"
-
 using namespace ork;
 
 namespace proland
 {
 
-static TW_CALL void ActivateHandlerCallback(const void *value, void *clientData)
+static void TW_CALL ActivateHandlerCallback(const void *value, void *clientData)
 {
     TweakBarManager::BarData *b = (TweakBarManager::BarData *)clientData;
     b->setActive(*(bool*) value);
 }
 
-static TW_CALL void GetHandlerStatusCallback(void *value, void *clientData)
+static void TW_CALL GetHandlerStatusCallback(void *value, void *clientData)
 {
     TweakBarManager::BarData *b = (TweakBarManager::BarData *)clientData;
     *static_cast<bool*> (value) = b->bar->isActive();

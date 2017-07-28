@@ -43,6 +43,7 @@
 
 #include "ork/resource/ResourceTemplate.h"
 
+#include <algorithm>
 using namespace std;
 using namespace ork;
 
@@ -146,7 +147,7 @@ float LifeCycleParticleLayer::getIntensity(ParticleStorage::Particle *p)
             return 1.0f;
         } else {
             t -= activeDelay;
-            return max(0.0f, 1.0f - t / fadeOutDelay);
+            return std::max(0.0f, 1.0f - t / fadeOutDelay);
         }
     }
 }

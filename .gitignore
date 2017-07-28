@@ -14,3 +14,5 @@
 /data
 #ignore log files
 *.html
+
+\.vscode/

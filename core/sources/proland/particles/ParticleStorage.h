@@ -67,7 +67,7 @@ namespace proland
  * @ingroup particles
  * @authors Eric Bruneton, Antoine Begault, Guillaume Piolat
  */
-PROLAND_API class ParticleStorage : public Object
+class PROLAND_API ParticleStorage : public Object
 {
 public:
     /**

@@ -10,39 +10,40 @@ include_directories(${PROLAND_CORE_SOURCES} ${PROJECT_SOURCE_DIR}/libraries)
 file(GLOB SOURCE_FILES *.cpp */*.cpp ui/twbar/*.cpp particles/screen/*.cpp particles/terrain/*.cpp)
 
 # Libraries
-set(LIBS "")
 if(UNIX)
 	set(LIBS ${LIBS} rt)
 endif(UNIX)
 
-# Static or shared?
-set(LIBTYPE STATIC)
-if(BUILD_SHARED)
-	set(LIBTYPE SHARED)
-endif(BUILD_SHARED)
-
 # Create a static library
-add_library(${LIBNAME} ${LIBTYPE} ${SOURCE_FILES})
-target_link_libraries(${LIBNAME} ${LIBS})
+add_library(${LIBNAME} ${SOURCE_FILES})
+target_link_libraries(${LIBNAME} ${PROLAND_3RDPARTY_LIBRARIES})
+
+if(BUILD_SHARED_LIBS AND MSVC)
+  target_compile_definitions(${LIBNAME} 
+    INTERFACE "-DPROLAND_API=__declspec(dllimport)"
+		PRIVATE   "-DPROLAND_API=__declspec(dllexport)")
+else(BUILD_SHARED_LIBS AND MSVC)
+	target_compile_definitions(${LIBNAME} PUBLIC -DPROLAND_API=)
+endif(BUILD_SHARED_LIBS AND MSVC)
+
+target_include_directories(proland-core INTERFACE 
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+  $<INSTALL_INTERFACE:include>  # <prefix>/include/mylib
+)
 
 # Adds SO Version and subversion. To be added to ensure ABI/API compatibility.
 #SET_TARGET_PROPERTIES(${LIBNAME} PROPERTIES SOVERSION ${ORK_VERSION_MAJOR} VERSION ${ORK_VERSION})
 
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
-message(STATUS "Output path for " ${LIBNAME} " is " ${LIBRARY_OUTPUT_PATH})
-link_directories(${PROJECT_SOURCE_DIR}/lib)
-
 # Install headers
-FOREACH(subdir math particles particles/screen particles/terrain producer terrain ui ui/twbar util)
-  FILE(GLOB include-files ${subdir}/*.h)
-  INSTALL(FILES ${include-files} DESTINATION include/proland/${subdir})
-ENDFOREACH(subdir)
+foreach(subdir math particles particles/screen particles/terrain producer terrain ui ui/twbar util)
+  file(GLOB include-files ${subdir}/*.h)
+  install(FILES ${include-files} DESTINATION include/proland/${subdir})
+endforeach(subdir)
 
 # Install library
-INSTALL(TARGETS ${LIBNAME} LIBRARY DESTINATION ${LIB_INSTALL_DIR} ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
+install(TARGETS ${LIBNAME} 
+        EXPORT proland-targets
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin)
 
-SET(ORK_CFLAGS "-DORK_API= -DTIXML_USE_STL")
-SET(PROLAND_CFLAGS "-DPROLAND_API= -DUSE_SHARED_PTR")
-
-CONFIGURE_FILE(proland-core.pc.in ${PROJECT_BINARY_DIR}/proland-core.pc @ONLY)
-INSTALL(FILES ${PROJECT_BINARY_DIR}/proland-core.pc DESTINATION ${LIB_INSTALL_DIR}/pkgconfig)

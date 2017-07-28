@@ -50,7 +50,7 @@ using namespace ork;
 namespace proland
 {
 
-TW_CALL void GetViewCallback(void *clientData)
+void TW_CALL GetViewCallback(void *clientData)
 {
     BasicViewHandler::Position q;
     ((BasicViewHandler*) clientData)->getPosition(q);
@@ -69,7 +69,7 @@ TW_CALL void GetViewCallback(void *clientData)
     }
 }
 
-TW_CALL void SetViewCallback(void *clientData)
+void TW_CALL SetViewCallback(void *clientData)
 {
     TweakViewHandler::Position *p = (TweakViewHandler::Position*) clientData;
     p->go();

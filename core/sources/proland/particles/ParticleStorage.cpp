@@ -42,6 +42,8 @@
 #include "proland/particles/ParticleStorage.h"
 
 #include <algorithm>
+#include <functional>
+
 #include "ork/math/pmath.h"
 
 #include "ork/resource/ResourceTemplate.h"
@@ -93,7 +95,7 @@ void ParticleStorage::initCpuStorage(int particleSize)
         freeAndAllocatedParticles.push_back((Particle*) (data + i * particleSize));
     }
     if (pack) {
-        make_heap(freeAndAllocatedParticles.begin(), freeAndAllocatedParticles.end(), greater<Particle*>());
+        make_heap(freeAndAllocatedParticles.begin(), freeAndAllocatedParticles.end(), std::greater<Particle*>());
     }
     particles = (void*) data;
 }
