@@ -38,6 +38,7 @@
 /*
  * Main authors: Eric Bruneton, Antoine Begault, Guillaume Piolat.
  */
+#include <algorithm>
 
 #include "proland/preprocess/terrain/AbstractTileCache.h"
 
@@ -86,8 +87,8 @@ unsigned char* AbstractTileCache::getTile(int tx, int ty)
 
 float AbstractTileCache::getTileHeight(int x, int y)
 {
-    x = max(min(x, width), 0);
-    y = max(min(y, height), 0);
+    x = std::max(std::min(x, width), 0);
+    y = std::max(std::min(y, height), 0);
     int tx = min(x, width - 1) / tileSize;
     int ty = min(y, height - 1) / tileSize;
     x = (x == width ? tileSize : x % tileSize) + 2;

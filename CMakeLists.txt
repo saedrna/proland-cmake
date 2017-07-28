@@ -22,9 +22,8 @@ endif(NOT CMAKE_BUILD_TYPE)
 find_package(ork REQUIRED) # ork::ork
 find_package(pthread REQUIRED) # pthread::pthread
 find_package(anttweakbar REQUIRED) # anttweakbar::anttweakbar
-set(PROLAND_3RDPARTY_LIBRARIES ork::ork pthread::pthread anttweakbar::anttweakbar)
-
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+find_package(TIFF REQUIRED) # TIFF::TIFF
+set(PROLAND_3RDPARTY_LIBRARIES ork::ork pthread::pthread anttweakbar::anttweakbar TIFF::TIFF)
 
 option(BUILD_SHARED_LIBS    "Build shared library instead of static"   ON)
 option(BUILD_EXAMPLES       "Build examples"                           ON )
@@ -32,7 +31,15 @@ option(BUILD_EXAMPLES       "Build examples"                           ON )
 
 #General compiler options:
 if(MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4251")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4251 /wd4244 /wd4996 /wd4267 /wd4305")
+    set(CMAKE_DEBUG_POSTFIX "-gd")
+#     if(BUILD_SHARED_LIBS AND MSVC)
+#   target_compile_definitions(${LIBNAME} 
+#     INTERFACE "-DPROLAND_API=__declspec(dllimport)"
+# 		PRIVATE   "-DPROLAND_API=__declspec(dllexport)")
+# else(BUILD_SHARED_LIBS AND MSVC)
+# 	target_compile_definitions(${LIBNAME} PUBLIC -DPROLAND_API=)
+# endif(BUILD_SHARED_LIBS AND MSVC)
 endif(MSVC)
 
 message(STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
@@ -40,7 +47,7 @@ message(STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
 # Sub dirs
 #add_subdirectory(libraries)
 add_subdirectory(core)
-# add_subdirectory(terrain)
+add_subdirectory(terrain)
 # add_subdirectory(atmo)
 # add_subdirectory(ocean)
 # add_subdirectory(forest)
@@ -50,7 +57,7 @@ add_subdirectory(core)
 
 if(BUILD_EXAMPLES)
 	add_subdirectory(core/examples)
-    # add_subdirectory(terrain/examples)
+    add_subdirectory(terrain/examples)
     # add_subdirectory(atmo/examples)
     # add_subdirectory(ocean/examples)
     # add_subdirectory(forest/examples)

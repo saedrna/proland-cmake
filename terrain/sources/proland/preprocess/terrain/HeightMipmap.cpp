@@ -41,6 +41,7 @@
 
 #include "proland/preprocess/terrain/HeightMipmap.h"
 
+#include <algorithm>
 #include <cstdlib>
 
 #include "ork/core/Object.h"

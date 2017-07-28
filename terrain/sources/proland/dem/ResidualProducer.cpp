@@ -41,6 +41,7 @@
 
 #include "proland/dem/ResidualProducer.h"
 
+#include <algorithm>
 #include <fstream>
 #include <sstream>
 
@@ -116,7 +117,7 @@ void ResidualProducer::init(ptr<TileCache> cache, const char *name, int deltaLev
         this->deltaLevel = rootLevel == 0 ? deltaLevel : 0;
         scale = scale * zscale;
 
-        int ntiles = minLevel + ((1 << (max(maxLevel - minLevel, 0) * 2 + 2)) - 1) / 3;
+        int ntiles = minLevel + ((1 << (std::max(maxLevel - minLevel, 0) * 2 + 2)) - 1) / 3;
         header = sizeof(float) + sizeof(int) * (6 + ntiles * 2);
         offsets = new unsigned int[ntiles * 2];
         if (tileFile != NULL) {
@@ -274,7 +275,7 @@ int ResidualProducer::getTileId(int level, int tx, int ty)
     if (level < minLevel) {
         return level;
     } else {
-        int l = max(level - minLevel, 0);
+        int l = std::max(level - minLevel, 0);
         return minLevel + tx + ty * (1 << l) + ((1 << (2 * l)) - 1) / 3;
     }
 }

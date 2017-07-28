@@ -47,8 +47,9 @@
 #include <assert.h>
 #include <fcntl.h>
 
+#include <filesystem>
+
 // Lars F: addition, since they use close() below
-#include <unistd.h>
 
 #include "ork/core/Object.h"
 
@@ -62,12 +63,7 @@ float id(float x)
 
 bool fexists(const string &name)
 {
-    int fd = open(name.c_str(), O_RDONLY);
-    if (fd != -1) {
-        close(fd);
-        return true;
-    }
-    return false;
+    return std::tr2::sys::exists(name);
 }
 
 bool flog(const string &name)
@@ -87,12 +83,10 @@ bool flog(const string &name)
         printf("GENERATING %s\n", name.c_str());
         return true;
     }
-    int fd = open(name.c_str(), O_RDONLY);
-    if (fd != -1) {
-        // file already exists
-        close(fd);
+    if (fexists(name))
+    {
         return false;
-    } else {
+    }else {
         printf("GENERATING %s\n", name.c_str());
         // file does not exist yet
         FILE *f;
@@ -168,8 +162,13 @@ void GetMinMaxColorsDXT1( const byte *colorBlock, byte *minColor, byte *maxColor
 	maxColor[2] = ( maxColor[2] >= inset[2] ) ? maxColor[2] - inset[2] : 0;
 }
 
-//#define ALIGN16( x ) __declspec(align(16)) x
+#ifdef _MSC_VER
+#define ALIGN16( x ) __declspec(align(16)) x
+#else
 #define ALIGN16( x ) x __attribute__ ((aligned (16)))
+#endif
+
+
 
 #define R_SHUFFLE_D( x, y, z, w ) (( (w) & 3 ) << 6 | ( (z) & 3 ) << 4 | ( (y) & 3 ) << 2 | ( (x) & 3 ))
 

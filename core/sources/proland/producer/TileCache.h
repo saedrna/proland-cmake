@@ -84,7 +84,7 @@ public:
      * describes where the tile is stored in the TileStorage, how its data can
      * be produced, and how many users currently use it.
      */
-    class Tile
+    class PROLAND_API Tile
     {
     public:
         /**

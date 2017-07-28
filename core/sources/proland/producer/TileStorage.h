@@ -88,7 +88,7 @@ public:
      * A slot managed by a TileStorage. Concrete sub classes of this class must
      * provide a reference to the actual tile data.
      */
-    class Slot
+    class PROLAND_API Slot
     {
     public:
         /**
