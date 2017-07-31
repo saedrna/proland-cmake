@@ -74,7 +74,7 @@
         <drawTerrain name="this.terrain" mesh="this.grid" culling="true"/>
     </sequence>
 
-    <texture2d name="font" source="text.png" internalformat="R8" min="LINEAR_MIPMAP_LINEAR" mag="LINEAR"/>
+    <texture2D name="font" source="text.png" internalformat="R8" min="LINEAR_MIPMAP_LINEAR" mag="LINEAR"/>
 
     <font name="basicFont" tex="font" nRows="8" nCols="12" minChar="32" maxChar="127" invalidChar="63" charWidths="19"/>
 
