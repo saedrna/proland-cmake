@@ -49,7 +49,7 @@ in vec4 c;
 layout(location=0) out vec4 data;
 
 void main() {
-    float v = texture2D(font, fuv).r;
+    float v = texture(font, fuv).r;
     data.rgb = (1.0 - v) * c.xyz * 0.25 + v * c.xyz;
     data.a = 0.6 + 0.4 * v;
 }

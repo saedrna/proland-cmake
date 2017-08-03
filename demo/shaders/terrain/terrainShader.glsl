@@ -214,7 +214,7 @@ vec2 advectedSlopes(SpriteList sprites, vec2 st, vec2 gradx, vec2 grady) {
         }
     }
 
-    return sumWeight > 0.0 ? sumWeightedSlopes / sqrt(sumWeight) : texture2DGrad(river.wave.patternTex, p.xy / river.wave.length, gradx, grady).xy;
+    return sumWeight > 0.0 ? sumWeightedSlopes / sqrt(sumWeight) : textureGrad(river.wave.patternTex, p.xy / river.wave.length, gradx, grady).xy;
 }
 
 #endif //RIVERS
@@ -329,7 +329,7 @@ void main() {
                 sunRadianceAndSkyIrradiance(p, normal, WSD, sunL, skyE);
 
                 /*if (river.useBedTex > 0.5) {
-                    riverColor = riverShallowColor + groundColor * texture2DGrad(river.bed.patternTex, normal.xy * river.depth / 10.0 + p.xy / (river.bed.length / 2.0), gradx, grady).xyz / (dot(n, vVec) * river.depth * riverDepth);
+                    riverColor = riverShallowColor + groundColor * textureGrad(river.bed.patternTex, normal.xy * river.depth / 10.0 + p.xy / (river.bed.length / 2.0), gradx, grady).xyz / (dot(n, vVec) * river.depth * riverDepth);
                 } else {
                     riverColor = riverShallowColor;
                 }*/

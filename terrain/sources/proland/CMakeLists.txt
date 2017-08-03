@@ -17,11 +17,11 @@ endif(UNIX)
 if(BUILD_SHARED_LIBS AND MSVC)
   add_definitions("-DPROLAND_API=__declspec(dllexport)")
 endif(BUILD_SHARED_LIBS AND MSVC)
+
 # Create a library
 add_library(${LIBNAME} ${SOURCE_FILES})
 
 target_link_libraries(${LIBNAME} proland-core ${PROLAND_3RDPARTY_LIBRARIES})
-remove_definitions(-DPROLAND_API=__declspec(dllimport))
 
 target_include_directories(${LIBNAME} PUBLIC 
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../>

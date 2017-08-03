@@ -26,6 +26,7 @@
  */
 
 const char * selectTreeSource = "\
+#extension GL_ARB_gpu_shader5 : enable\n\
 #extension GL_EXT_gpu_shader4 : enable\n\
 \n\
 #include \"globalsShader.glhl\"\n\

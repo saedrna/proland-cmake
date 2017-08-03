@@ -264,7 +264,7 @@ float opticalDepth(float H, float r, float mu, float d) {
 // (mu=cos(view zenith angle)), intersections with ground ignored
 vec3 transmittance(float r, float mu) {
     vec2 uv = getTransmittanceUV(r, mu);
-    return texture2D(transmittanceSampler, uv).rgb;
+    return texture(transmittanceSampler, uv).rgb;
 }
 
 // transmittance(=transparency) of atmosphere for ray (r,mu) of length d
@@ -312,7 +312,7 @@ vec3 transmittance(float r, float mu, float d) {
 
 vec3 irradiance(sampler2D sampler, float r, float muS) {
     vec2 uv = getIrradianceUV(r, muS);
-    return texture2D(sampler, uv).rgb;
+    return texture(sampler, uv).rgb;
 }
 
 // Rayleigh phase function
@@ -345,7 +345,7 @@ float SQRT(float f, float err) {
 // assumes sundir=vec3(0.0, 0.0, 1.0)
 vec3 outerSunRadiance(vec3 viewdir)
 {
-    vec3 data = viewdir.z > 0.0 ? texture2D(glareSampler, vec2(0.5) + viewdir.xy * 4.0).rgb : vec3(0.0);
+    vec3 data = viewdir.z > 0.0 ? texture(glareSampler, vec2(0.5) + viewdir.xy * 4.0).rgb : vec3(0.0);
     return pow(data, vec3(2.2)) * SUN_INTENSITY;
 }
 

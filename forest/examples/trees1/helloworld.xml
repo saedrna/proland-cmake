@@ -27,20 +27,20 @@
     <multithreadScheduler name="defaultScheduler" nthreads="3" fps="0"/>
 
     <tileCache name="groundElevations" scheduler="defaultScheduler">
-        <gpuTileStorage tileSize="101" nTiles="512"
+        <gpuTileStorage tileSize="101" nTiles="2048"
             internalformat="RGB32F" format="RGB" type="FLOAT" min="LINEAR" mag="LINEAR"/>
     </tileCache>
     <elevationProducer name="groundElevations1" cache="groundElevations"
         noise="-140,-100,-15,-8,5,2.5,1.5,1,0.5,0.25,0.1,0.05"/>
 
     <tileCache name="groundNormals" scheduler="defaultScheduler">
-        <gpuTileStorage tileSize="97" nTiles="512"
+        <gpuTileStorage tileSize="97" nTiles="2048"
             internalformat="RG8" format="RG" type="FLOAT" min="LINEAR" mag="LINEAR"/>
     </tileCache>
     <normalProducer name="groundNormals1" cache="groundNormals" elevations="groundElevations1"/>
 
     <tileCache name="groundLccGpu" scheduler="defaultScheduler">
-        <gpuTileStorage tileSize="100" nTiles="512"
+        <gpuTileStorage tileSize="100" nTiles="2048"
             internalformat="R8" format="RED" type="UNSIGNED_BYTE" min="LINEAR" mag="LINEAR"/>
     </tileCache>
     <orthoProducer name="groundLccGpu1" cache="groundLccGpu" maxLevel="7"
