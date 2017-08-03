@@ -34,7 +34,7 @@ message(STATUS "Output path for " ${LIBNAME} " is " ${LIBRARY_OUTPUT_PATH})
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 
 # Install headers
-FOREACH(subdir edit ui/twbar)
+FOREACH(subdir edit ui/twbar ./)
   FILE(GLOB include-files ${subdir}/*.h)
   INSTALL(FILES ${include-files} DESTINATION include/proland/${subdir})
 ENDFOREACH(subdir)

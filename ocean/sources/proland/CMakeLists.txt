@@ -32,7 +32,7 @@ target_include_directories(${LIBNAME} PUBLIC
 )
 
 # Install headers
-foreach(subdir ocean)
+foreach(subdir ocean ./)
   file(GLOB include-files ${subdir}/*.h)
   install(FILES ${include-files} DESTINATION include/proland/${subdir})
 endforeach(subdir)

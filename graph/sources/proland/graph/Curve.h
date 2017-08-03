@@ -53,7 +53,7 @@ namespace proland
  * @ingroup graph
  * @author Antoine Begault, Guillaume Piolat
  */
-PROLAND_API struct Vertex : public vec2d
+struct PROLAND_API Vertex : public vec2d
 {
     /**
      * Pseudo curvilinear coordinate along the curve. This coordinate is

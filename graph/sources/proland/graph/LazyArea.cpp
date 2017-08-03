@@ -118,14 +118,14 @@ void LazyArea::invertCurve(CurveId cid)
 
 void LazyArea::loadCurve(CurveId id, int orientation)
 {
-    curveIds.push_back(make_pair<CurveId, int>(id, orientation));
+    curveIds.emplace_back(id, orientation);
     curves.push_back(make_pair<CurvePtr, int>(NULL, 0));
 }
 
 void LazyArea::addCurve(CurveId id, int orientation)
 {
     dynamic_cast<LazyGraph*>(owner)->getAreaCache()->add(this, true);
-    curveIds.push_back(make_pair<CurveId, int>(id, orientation));
+    curveIds.emplace_back(id, orientation);
     curves.push_back(make_pair<CurvePtr, int>((CurvePtr) NULL, 0));
 }
 

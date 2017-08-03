@@ -28,7 +28,7 @@ target_include_directories(${LIBNAME} PUBLIC
 )
 
 # Install headers
-foreach(subdir plants preprocess/trees)
+foreach(subdir plants preprocess/trees ./)
   file(GLOB include-files ${subdir}/*.h)
   install(FILES ${include-files} DESTINATION include/proland/${subdir})
 endforeach(subdir)

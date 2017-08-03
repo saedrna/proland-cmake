@@ -74,7 +74,7 @@ public:
      * Creates Graph objects. GraphFactory is used to determine what kind
      * of graph will be created in a GraphProducer.
      */
-    class GraphFactory : public Object
+    class PROLAND_API GraphFactory : public Object
     {
     public:
         GraphFactory();
@@ -93,7 +93,7 @@ public:
     /**
      * A GraphFactory that creates LazyGraph.
      */
-    class LazyGraphFactory : public GraphFactory
+    class PROLAND_API LazyGraphFactory : public GraphFactory
     {
     public:
         LazyGraphFactory();
@@ -110,7 +110,7 @@ public:
      * file doesn't exist, the tile will be created from the root Graph (in
      * GraphProducer#doCreateTile()) and then stored in cache and saved to disk.
      */
-    class GraphCache : public Object {
+    class PROLAND_API GraphCache : public Object {
     public:
 
         /**

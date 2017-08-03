@@ -29,7 +29,7 @@ target_include_directories(${LIBNAME} PUBLIC
 )
 
 # Install headers
-foreach(subdir dem ortho preprocess/terrain)
+foreach(subdir dem ortho preprocess/terrain ./)
   file(GLOB include-files ${subdir}/*.h)
   install(FILES ${include-files} DESTINATION include/proland/${subdir})
 ENDFOREACH(subdir)
