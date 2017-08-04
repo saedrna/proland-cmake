@@ -49,14 +49,14 @@ TwBar *TweakGraphLayer::contextBar;
 /**
  * Curve Width Callbacks
  */
-static TW_CALL void SetCurveWidthCallback(const void *value, void *clientData)
+static void TW_CALL SetCurveWidthCallback(const void *value, void *clientData)
 {
     EditGraphOrthoLayer::SelectionData e = *(EditGraphOrthoLayer::SelectionData*)clientData;
     e.c->setWidth(*(float*)value);
     e.editor->updateSelectedCurve();
 }
 
-static TW_CALL void GetCurveWidthCallback(void *value, void *clientData)
+static void TW_CALL GetCurveWidthCallback(void *value, void *clientData)
 {
     CurvePtr c = (*(EditGraphOrthoLayer::SelectionData*) clientData).c;
     *static_cast<float*> (value) = c == NULL ? -1.f : c->getWidth();
@@ -65,14 +65,14 @@ static TW_CALL void GetCurveWidthCallback(void *value, void *clientData)
 /**
  * Curve Type Callbacks
  */
-static TW_CALL void SetCurveTypeCallback(const void *value, void *clientData)
+static void TW_CALL SetCurveTypeCallback(const void *value, void *clientData)
 {
     EditGraphOrthoLayer::SelectionData e = *(EditGraphOrthoLayer::SelectionData*)clientData;
     e.c->setType(*(int*)value);
     e.editor->updateSelectedCurve();
 }
 
-static TW_CALL void GetCurveTypeCallback(void *value, void *clientData)
+static void TW_CALL GetCurveTypeCallback(void *value, void *clientData)
 {
     CurvePtr c = (*(EditGraphOrthoLayer::SelectionData*) clientData).c;
     *static_cast<int*> (value) = c == NULL ? 0 : c->getType();
@@ -81,14 +81,14 @@ static TW_CALL void GetCurveTypeCallback(void *value, void *clientData)
 /**
  * Area Info Callbacks
  */
-static TW_CALL void SetAreaInfoCallback(const void *value, void *clientData)
+static void TW_CALL SetAreaInfoCallback(const void *value, void *clientData)
 {
     EditGraphOrthoLayer::SelectionData e = *(EditGraphOrthoLayer::SelectionData*)clientData;
     e.c->getArea1()->setInfo(*(int*)value);
     e.editor->updateSelectedCurve();
 }
 
-static TW_CALL void GetAreaInfoCallback(void *value, void *clientData)
+static void TW_CALL GetAreaInfoCallback(void *value, void *clientData)
 {
     CurvePtr c = (*(EditGraphOrthoLayer::SelectionData*) clientData).c;
     *static_cast<float*> (value) = c == NULL ? -1.f : c->getArea1()->getInfo();
@@ -97,26 +97,26 @@ static TW_CALL void GetAreaInfoCallback(void *value, void *clientData)
 /**
  * Vertex Position Callbacks
  */
-static TW_CALL void SetVertexXCallback(const void *value, void *clientData)
+static void TW_CALL SetVertexXCallback(const void *value, void *clientData)
 {
     EditGraphOrthoLayer::VertexData v = *(EditGraphOrthoLayer::VertexData*)clientData;
     v.movePoint(*(float*) value, v.c->getXY(v.i).y);
 }
 
-static TW_CALL void GetVertexXCallback(void *value, void *clientData)
+static void TW_CALL GetVertexXCallback(void *value, void *clientData)
 {
     EditGraphOrthoLayer::VertexData c = *(EditGraphOrthoLayer::VertexData*)clientData;
 
     *static_cast<float*> (value) = c.c == NULL ? 0.f : c.c->getXY(c.i).x;
 }
 
-static TW_CALL void SetVertexYCallback(const void *value, void *clientData)
+static void TW_CALL SetVertexYCallback(const void *value, void *clientData)
 {
     EditGraphOrthoLayer::VertexData v = *(EditGraphOrthoLayer::VertexData*)clientData;
     v.movePoint(v.c->getXY(v.i).x, *(float*) value);
 }
 
-static TW_CALL void GetVertexYCallback(void *value, void *clientData)
+static void TW_CALL GetVertexYCallback(void *value, void *clientData)
 {
     EditGraphOrthoLayer::VertexData c = *(EditGraphOrthoLayer::VertexData*)clientData;
     *static_cast<float*> (value) = c.c == NULL ? 0.f : c.c->getXY(c.i).y;
@@ -125,23 +125,23 @@ static TW_CALL void GetVertexYCallback(void *value, void *clientData)
 /**
  * Vertex Attributes Callbacks
  */
-static TW_CALL void SetVertexSCallback(const void *value, void *clientData)
+static void TW_CALL SetVertexSCallback(const void *value, void *clientData)
 {
     (*(EditGraphOrthoLayer::VertexData*)clientData).setS(*(float*) value);
 }
 
-static TW_CALL void GetVertexSCallback(void *value, void *clientData)
+static void TW_CALL GetVertexSCallback(void *value, void *clientData)
 {
     EditGraphOrthoLayer::VertexData c = *(EditGraphOrthoLayer::VertexData*)clientData;
     *static_cast<float*> (value) = c.c == NULL ? 0.f : c.c->getS(c.i);
 }
 
-static TW_CALL void SetVertexBOOLCallback(const void *value, void *clientData)
+static void TW_CALL SetVertexBOOLCallback(const void *value, void *clientData)
 {
     (*(EditGraphOrthoLayer::VertexData*)clientData).setControlPoint(*(bool*) value);
 }
 
-static TW_CALL void GetVertexBOOLCallback(void *value, void *clientData)
+static void TW_CALL GetVertexBOOLCallback(void *value, void *clientData)
 {
     EditGraphOrthoLayer::VertexData c = *(EditGraphOrthoLayer::VertexData*)clientData;
     *static_cast<bool*> (value) = c.c == NULL ? false : c.c->getIsControl(c.i);
@@ -150,12 +150,12 @@ static TW_CALL void GetVertexBOOLCallback(void *value, void *clientData)
 /**
  * Edition Callbacks
  */
-static TW_CALL void SetEditedGraphCallback(const void *value, void *clientData)
+static void TW_CALL SetEditedGraphCallback(const void *value, void *clientData)
 {
     EditGraphOrthoLayer::getEventHandler().cast<EditGraphOrthoLayer::EditGraphHandlerList>()->setEditedGraph(*(int*)value);
 }
 
-static TW_CALL void GetEditedGraphCallback(void *value, void *clientData)
+static void TW_CALL GetEditedGraphCallback(void *value, void *clientData)
 {
     *static_cast<int*> (value) = EditGraphOrthoLayer::getEventHandler().cast<EditGraphOrthoLayer::EditGraphHandlerList>()->getEditedGraph();
 }
@@ -163,22 +163,22 @@ static TW_CALL void GetEditedGraphCallback(void *value, void *clientData)
 /**
  * Default Values Callbacks
  */
-static TW_CALL void SetDefaultCurveTypeCallback(const void *value, void *clientData)
+static void TW_CALL SetDefaultCurveTypeCallback(const void *value, void *clientData)
 {
     EditGraphOrthoLayer::getEventHandler().cast<EditGraphOrthoLayer::EditGraphHandlerList>()->setDefaultCurveType(*(int*) value);
 }
 
-static TW_CALL void GetDefaultCurveTypeCallback(void *value, void *clientData)
+static void TW_CALL GetDefaultCurveTypeCallback(void *value, void *clientData)
 {
     *static_cast<int*> (value) = EditGraphOrthoLayer::getEventHandler().cast<EditGraphOrthoLayer::EditGraphHandlerList>()->getDefaultCurveType();
 }
 
-static TW_CALL void SetDefaultCurveWidthCallback(const void *value, void *clientData)
+static void TW_CALL SetDefaultCurveWidthCallback(const void *value, void *clientData)
 {
     EditGraphOrthoLayer::getEventHandler().cast<EditGraphOrthoLayer::EditGraphHandlerList>()->setDefaultCurveWidth(*(float*) value);
 }
 
-static TW_CALL void GetDefaultCurveWidthCallback(void *value, void *clientData)
+static void TW_CALL GetDefaultCurveWidthCallback(void *value, void *clientData)
 {
     *static_cast<float*> (value) = EditGraphOrthoLayer::getEventHandler().cast<EditGraphOrthoLayer::EditGraphHandlerList>()->getDefaultCurveWidth();
 }
@@ -186,7 +186,7 @@ static TW_CALL void GetDefaultCurveWidthCallback(void *value, void *clientData)
 /**
  * Delete selection Callback
  */
-static TW_CALL void deleteSelectionCallback(void *clientData)
+static void TW_CALL deleteSelectionCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData e = *(EditGraphOrthoLayer::SelectionData*)clientData;
     if (e.editor->remove()) {
@@ -198,7 +198,7 @@ static TW_CALL void deleteSelectionCallback(void *clientData)
 /**
  * Inverse selection Callback
  */
-static TW_CALL void invertSelectionCallback(void *clientData)
+static void TW_CALL invertSelectionCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData e = *(EditGraphOrthoLayer::SelectionData*)clientData;
     if (e.editor->invert()) {
@@ -210,7 +210,7 @@ static TW_CALL void invertSelectionCallback(void *clientData)
 /**
  * Smoothing Callbacks
  */
-static TW_CALL void smoothSelectionCallback(void *clientData)
+static void TW_CALL smoothSelectionCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData *e = (EditGraphOrthoLayer::SelectionData*)clientData;
     if (e->editor->transformVertex()) {
@@ -219,7 +219,7 @@ static TW_CALL void smoothSelectionCallback(void *clientData)
     TwSetParam(TweakGraphLayer::contextBar, NULL, "visible", TW_PARAM_CSTRING, 1, "false");
 }
 
-static TW_CALL void smoothNodeCallback(void *clientData)
+static void TW_CALL smoothNodeCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData *e = (EditGraphOrthoLayer::SelectionData*)clientData;
     if (e->editor->smoothNode(true)) {
@@ -228,7 +228,7 @@ static TW_CALL void smoothNodeCallback(void *clientData)
     TwSetParam(TweakGraphLayer::contextBar, NULL, "visible", TW_PARAM_CSTRING, 1, "false");
 }
 
-static TW_CALL void unsmoothNodeCallback(void *clientData)
+static void TW_CALL unsmoothNodeCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData *e = (EditGraphOrthoLayer::SelectionData*)clientData;
     if (e->editor->smoothNode(false)) {
@@ -237,7 +237,7 @@ static TW_CALL void unsmoothNodeCallback(void *clientData)
     TwSetParam(TweakGraphLayer::contextBar, NULL, "visible", TW_PARAM_CSTRING, 1, "false");
 }
 
-static TW_CALL void smoothCurveCallback(void *clientData)
+static void TW_CALL smoothCurveCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData *e = (EditGraphOrthoLayer::SelectionData*)clientData;
     if (e->editor->smoothCurve(true)) {
@@ -246,7 +246,7 @@ static TW_CALL void smoothCurveCallback(void *clientData)
     TwSetParam(TweakGraphLayer::contextBar, NULL, "visible", TW_PARAM_CSTRING, 1, "false");
 }
 
-static TW_CALL void unsmoothCurveCallback(void *clientData)
+static void TW_CALL unsmoothCurveCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData *e = (EditGraphOrthoLayer::SelectionData*)clientData;
     if (e->editor->smoothCurve(false)) {
@@ -255,7 +255,7 @@ static TW_CALL void unsmoothCurveCallback(void *clientData)
     TwSetParam(TweakGraphLayer::contextBar, NULL, "visible", TW_PARAM_CSTRING, 1, "false");
 }
 
-static TW_CALL void smoothAreaCallback(void *clientData)
+static void TW_CALL smoothAreaCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData *e = (EditGraphOrthoLayer::SelectionData*)clientData;
         if (e->editor->smoothArea(true)) {
@@ -264,7 +264,7 @@ static TW_CALL void smoothAreaCallback(void *clientData)
     TwSetParam(TweakGraphLayer::contextBar, NULL, "visible", TW_PARAM_CSTRING, 1, "false");
 }
 
-static TW_CALL void unsmoothAreaCallback(void *clientData)
+static void TW_CALL unsmoothAreaCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData *e = (EditGraphOrthoLayer::SelectionData*)clientData;
     if (e->editor->smoothArea(false)) {
@@ -276,7 +276,7 @@ static TW_CALL void unsmoothAreaCallback(void *clientData)
 /**
  * Clip/Merge Callback
  */
-static TW_CALL void clipAndMergeCurveCallback(void *clientData) // point2node or node2point
+static void TW_CALL clipAndMergeCurveCallback(void *clientData) // point2node or node2point
 {
     EditGraphOrthoLayer::SelectionData *e = (EditGraphOrthoLayer::SelectionData*)clientData;
     if (e->editor->change()) {
@@ -288,7 +288,7 @@ static TW_CALL void clipAndMergeCurveCallback(void *clientData) // point2node or
 /**
  * Specific delete and add Callbacks
  */
-static TW_CALL void deleteCurveCallback(void *clientData)
+static void TW_CALL deleteCurveCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData * c = ((EditGraphOrthoLayer::SelectionData*)clientData);
     c->editor->setSelection(c->editor->getSelectedCurve(), -1, 0);
@@ -298,7 +298,7 @@ static TW_CALL void deleteCurveCallback(void *clientData)
     TwSetParam(TweakGraphLayer::contextBar, NULL, "visible", TW_PARAM_CSTRING, 1, "false");
 }
 
-static TW_CALL void addPointCallback(void *clientData)
+static void TW_CALL addPointCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData * c = ((EditGraphOrthoLayer::SelectionData*)clientData);
     if (c->editor->add((float)c->mousePosition.x, (float)c->mousePosition.y, c->editor->getTolerance())) {
@@ -307,7 +307,7 @@ static TW_CALL void addPointCallback(void *clientData)
     TwSetParam(TweakGraphLayer::contextBar, NULL, "visible", TW_PARAM_CSTRING, 1, "false");
 }
 
-static TW_CALL void addControlPointCallback(void *clientData)
+static void TW_CALL addControlPointCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData * c = ((EditGraphOrthoLayer::SelectionData*)clientData);
     if (c->editor->add((float)c->mousePosition.x, (float)c->mousePosition.y, c->editor->getTolerance())) {
@@ -317,7 +317,7 @@ static TW_CALL void addControlPointCallback(void *clientData)
     TwSetParam(TweakGraphLayer::contextBar, NULL, "visible", TW_PARAM_CSTRING, 1, "false");
 }
 
-static TW_CALL void addNodeCallback(void *clientData)
+static void TW_CALL addNodeCallback(void *clientData)
 {
     EditGraphOrthoLayer::SelectionData * c = ((EditGraphOrthoLayer::SelectionData*)clientData);
     if (c->editor->add((float)c->mousePosition.x, (float)c->mousePosition.y, c->editor->getTolerance())) {

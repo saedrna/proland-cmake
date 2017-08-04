@@ -38,6 +38,7 @@
 /*
  * Main authors: Eric Bruneton, Antoine Begault, Guillaume Piolat.
  */
+#include <algorithm>
 
 #include "proland/edit/EditResidualProducer.h"
 

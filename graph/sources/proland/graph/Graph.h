@@ -238,7 +238,7 @@ public:
      * created when a Graph is modified, and they are used in #clipUpdate
      * to update a clipped graph incrementally, without doing a full #clip.
      */
-    struct Changes
+    struct PROLAND_API Changes
     {
         list<AreaId> changedArea;
 

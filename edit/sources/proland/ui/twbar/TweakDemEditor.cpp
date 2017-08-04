@@ -49,32 +49,32 @@ using namespace ork;
 namespace proland
 {
 
-TW_CALL void ResetDemCB(void * clientData)
+void TW_CALL ResetDemCB(void * clientData)
 {
     EditElevationProducer::getEditorHandler()->reset();
 }
 
-TW_CALL void SetDemEditorStateCallback(const void *value, void *clientData)
+void TW_CALL SetDemEditorStateCallback(const void *value, void *clientData)
 {
     static_cast<Editor*>(clientData)->setActive(*static_cast<const bool*>(value));
 }
 
-TW_CALL void GetDemEditorStateCallback(void *value, void *clientData)
+void TW_CALL GetDemEditorStateCallback(void *value, void *clientData)
 {
     *static_cast<bool *>(value) = static_cast<Editor*>(clientData)->isActive();
 }
 
-TW_CALL void SetDemEditorGroupStateCallback(const void *value, void *clientData)
+void TW_CALL SetDemEditorGroupStateCallback(const void *value, void *clientData)
 {
     EditElevationProducer::getEditorHandler()->setActive(static_cast<Editor*>(clientData)->getGroup(), *static_cast<const bool*>(value));
 }
 
-TW_CALL void GetDemEditorGroupStateCallback(void *value, void *clientData)
+void TW_CALL GetDemEditorGroupStateCallback(void *value, void *clientData)
 {
     *static_cast<bool *>(value) = EditElevationProducer::getEditorHandler()->isActive(static_cast<Editor*>(clientData)->getGroup());
 }
 
-TW_CALL void SetDemEditModeCallback(const void *value, void *clientData)
+void TW_CALL SetDemEditModeCallback(const void *value, void *clientData)
 {
     ptr<EditorHandler> e = EditElevationProducer::getEditorHandler();
     for (int i = 0; i < e->getEditorCount(); ++i) {
@@ -82,7 +82,7 @@ TW_CALL void SetDemEditModeCallback(const void *value, void *clientData)
     }
 }
 
-TW_CALL void GetDemEditModeCallback(void *value, void *clientData)
+void TW_CALL GetDemEditModeCallback(void *value, void *clientData)
 {
     *static_cast<BlendEquation*>(value) = dynamic_cast<EditElevationProducer*>(EditElevationProducer::getEditorHandler()->getEditor(0))->getEditMode();
 }

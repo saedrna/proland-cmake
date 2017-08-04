@@ -49,200 +49,200 @@ namespace proland
 {
 
 // Particle Radius
-static TW_CALL void SetRadiusCallback(const void *value, void *clientData)
+static void TW_CALL SetRadiusCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask*>(clientData)->setParticleRadius(*static_cast<const float *>(value));
 
 }
 
-static TW_CALL void GetRadiusCallback(void *value, void *clientData)
+static void TW_CALL GetRadiusCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<const DrawRiversTask*>(clientData)->getParticleRadius();
 }
 
 //// Max amount of particles
-//static TW_CALL void SetMaxPCallback(const void *value, void *clientData)
+//static void TW_CALL SetMaxPCallback(const void *value, void *clientData)
 //{
 //  static_cast<ParticleProducer *>(clientData)->getStorage()->setMaxParticles(*static_cast<const int*>(value));
 //}
-//static TW_CALL void GetMaxPCallback(void *value, void *clientData)
+//static void TW_CALL GetMaxPCallback(void *value, void *clientData)
 //{
 //  *static_cast<int *>(value) = static_cast<const ParticleManager *>(clientData)->getMaxParticles();
 //}
 
 // Max particle age
-static TW_CALL void SetMaxAgeCallback(const void *value, void *clientData)
+static void TW_CALL SetMaxAgeCallback(const void *value, void *clientData)
 {
     static_cast<LifeCycleParticleLayer *>(clientData)->setActiveDelay(*static_cast<const float *>(value) * 1000000.f);
 }
 
-static TW_CALL void GetMaxAgeCallback(void *value, void *clientData)
+static void TW_CALL GetMaxAgeCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<const LifeCycleParticleLayer *>(clientData)->getActiveDelay() / 1000000.f;
 }
 
 // Particle Fading in Time
-static TW_CALL void SetFadeInCallback(const void *value, void *clientData)
+static void TW_CALL SetFadeInCallback(const void *value, void *clientData)
 {
     static_cast<LifeCycleParticleLayer *>(clientData)->setFadeInDelay(*static_cast<const float *>(value) * 1000000.f);
 }
 
-static TW_CALL void GetFadeInCallback(void *value, void *clientData)
+static void TW_CALL GetFadeInCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<const LifeCycleParticleLayer *>(clientData)->getFadeInDelay() / 1000000.f;
 }
 
 // Particle Fading out Time
-static TW_CALL void SetFadeOutCallback(const void *value, void *clientData)
+static void TW_CALL SetFadeOutCallback(const void *value, void *clientData)
 {
     static_cast<LifeCycleParticleLayer *>(clientData)->setFadeOutDelay(*static_cast<const float *>(value) * 1000000.f);
 }
 
-static TW_CALL void GetFadeOutCallback(void *value, void *clientData)
+static void TW_CALL GetFadeOutCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<const LifeCycleParticleLayer*>(clientData)->getFadeOutDelay() / 1000000.f;
 }
 
 // Particle Fading in Time
-static TW_CALL void SetFlowSpeedCallback(const void *value, void *clientData)
+static void TW_CALL SetFlowSpeedCallback(const void *value, void *clientData)
 {
     static_cast<WorldParticleLayer *>(clientData)->setSpeedFactor(*static_cast<const float *>(value));
 }
 
-static TW_CALL void GetFlowSpeedCallback(void *value, void *clientData)
+static void TW_CALL GetFlowSpeedCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<const WorldParticleLayer *>(clientData)->getSpeedFactor();
 }
 
 // Particle Fading in Time
-static TW_CALL void SetPausedCallback(const void *value, void *clientData)
+static void TW_CALL SetPausedCallback(const void *value, void *clientData)
 {
     static_cast<WorldParticleLayer *>(clientData)->setPaused(*static_cast<const bool *>(value));
 }
 
-static TW_CALL void GetPausedCallback(void *value, void *clientData)
+static void TW_CALL GetPausedCallback(void *value, void *clientData)
 {
     *static_cast<bool *>(value) = static_cast<const WorldParticleLayer *>(clientData)->isPaused();
 }
 
 // FlowData slip parameter
-static TW_CALL void SetSlipCallback(const void *value, void *clientData)
+static void TW_CALL SetSlipCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->setSlipParameter(-1, *static_cast<const float*>(value));
 }
 
-static TW_CALL void GetSlipCallback(void *value, void *clientData)
+static void TW_CALL GetSlipCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<DrawRiversTask *>(clientData)->getSlipParameter(-1);
 }
 
 // FlowData potential delta parameter
-static TW_CALL void SetPotentialDeltaCallback(const void *value, void *clientData)
+static void TW_CALL SetPotentialDeltaCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->setPotentialDelta(-1, *static_cast<const float*>(value));
 }
 
-static TW_CALL void GetPotentialDeltaCallback(void *value, void *clientData)
+static void TW_CALL GetPotentialDeltaCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<DrawRiversTask *>(clientData)->getPotentialDelta(-1);
 }
 
-static TW_CALL void SetTimeStepCallback(const void *value, void *clientData)
+static void TW_CALL SetTimeStepCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->setTimeStep(*static_cast<const float*>(value));
 }
 
-static TW_CALL void GetTimeStepCallback(void *value, void *clientData)
+static void TW_CALL GetTimeStepCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<DrawRiversTask *>(clientData)->getTimeStep();
 }
 
-static TW_CALL void SetMeshDisplayTypeCallback(const void *value, void *clientData)
+static void TW_CALL SetMeshDisplayTypeCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->setMeshDisplayType(*static_cast<const DrawRiversTask::MeshDisplayType*>(value));
 }
 
-static TW_CALL void GetMeshDisplayTypeCallback(void *value, void *clientData)
+static void TW_CALL GetMeshDisplayTypeCallback(void *value, void *clientData)
 {
     *static_cast<DrawRiversTask::MeshDisplayType*>(value) = static_cast<DrawRiversTask *>(clientData)->getMeshDisplayType();
 }
 
-static TW_CALL void SetDisplayGridCallback(const void *value, void *clientData)
+static void TW_CALL SetDisplayGridCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->displayGrid(*static_cast<const bool*>(value));
 }
 
-static TW_CALL void GetDisplayGridCallback(void *value, void *clientData)
+static void TW_CALL GetDisplayGridCallback(void *value, void *clientData)
 {
     *static_cast<bool *>(value) = static_cast<DrawRiversTask *>(clientData)->displayGrid();
 }
 
-static TW_CALL void SetDisplayParticlesCallback(const void *value, void *clientData)
+static void TW_CALL SetDisplayParticlesCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->displayParticles(*static_cast<const bool*>(value));
 }
 
-static TW_CALL void GetdisplayParticlesCallback(void *value, void *clientData)
+static void TW_CALL GetdisplayParticlesCallback(void *value, void *clientData)
 {
     *static_cast<bool *>(value) = static_cast<DrawRiversTask *>(clientData)->displayParticles();
 }
 
-static TW_CALL void SetDisplayVelocitiesCallback(const void *value, void *clientData)
+static void TW_CALL SetDisplayVelocitiesCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->displayVelocities(*static_cast<const bool*>(value));
 }
 
-static TW_CALL void GetDisplayVelocitiesCallback(void *value, void *clientData)
+static void TW_CALL GetDisplayVelocitiesCallback(void *value, void *clientData)
 {
     *static_cast<bool *>(value) = static_cast<DrawRiversTask *>(clientData)->displayVelocities();
 }
 
-static TW_CALL void SetDisplaySunEffectsCallback(const void *value, void *clientData)
+static void TW_CALL SetDisplaySunEffectsCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->displaySunEffects(*static_cast<const bool*>(value));
 }
 
-static TW_CALL void GetDisplaySunEffectsCallback(void *value, void *clientData)
+static void TW_CALL GetDisplaySunEffectsCallback(void *value, void *clientData)
 {
     *static_cast<bool *>(value) = static_cast<DrawRiversTask *>(clientData)->displaySunEffects();
 }
 
-static TW_CALL void SetWaveSlopeCallback(const void *value, void *clientData)
+static void TW_CALL SetWaveSlopeCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->setWaveSlopeFactor(*static_cast<const float*>(value));
 }
 
-static TW_CALL void GetWaveSlopeCallback(void *value, void *clientData)
+static void TW_CALL GetWaveSlopeCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<DrawRiversTask *>(clientData)->getWaveSlopeFactor();
 }
 
-static TW_CALL void SetRiverDepthCallback(const void *value, void *clientData)
+static void TW_CALL SetRiverDepthCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->setRiverDepth(*static_cast<const float*>(value));
 }
 
-static TW_CALL void GetRiverDepthCallback(void *value, void *clientData)
+static void TW_CALL GetRiverDepthCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<DrawRiversTask *>(clientData)->getRiverDepth();
 }
 
-static TW_CALL void SetWaveLengthCallback(const void *value, void *clientData)
+static void TW_CALL SetWaveLengthCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->setWaveLength(*static_cast<const float*>(value));
 }
 
-static TW_CALL void GetWaveLengthCallback(void *value, void *clientData)
+static void TW_CALL GetWaveLengthCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<DrawRiversTask *>(clientData)->getWaveLength();
 }
 
-static TW_CALL void SetBedLengthCallback(const void *value, void *clientData)
+static void TW_CALL SetBedLengthCallback(const void *value, void *clientData)
 {
     static_cast<DrawRiversTask *>(clientData)->setBedLength(*static_cast<const float*>(value));
 }
 
-static TW_CALL void GetBedLengthCallback(void *value, void *clientData)
+static void TW_CALL GetBedLengthCallback(void *value, void *clientData)
 {
     *static_cast<float *>(value) = static_cast<DrawRiversTask *>(clientData)->getBedLength();
 }

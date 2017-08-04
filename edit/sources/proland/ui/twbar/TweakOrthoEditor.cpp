@@ -49,27 +49,27 @@ using namespace ork;
 namespace proland
 {
 
-TW_CALL void ResetOrthoCB(void * clientData)
+void TW_CALL ResetOrthoCB(void * clientData)
 {
     EditOrthoProducer::getEditorHandler()->reset();
 }
 
-TW_CALL void SetOrthoEditorStateCallback(const void *value, void *clientData)
+void TW_CALL SetOrthoEditorStateCallback(const void *value, void *clientData)
 {
     static_cast<Editor*>(clientData)->setActive(*static_cast<const bool*>(value));
 }
 
-TW_CALL void GetOrthoEditorStateCallback(void *value, void *clientData)
+void TW_CALL GetOrthoEditorStateCallback(void *value, void *clientData)
 {
     *static_cast<bool *>(value) = static_cast<Editor*>(clientData)->isActive();
 }
 
-TW_CALL void SetOrthoEditorGroupStateCallback(const void *value, void *clientData)
+void TW_CALL SetOrthoEditorGroupStateCallback(const void *value, void *clientData)
 {
     EditOrthoProducer::getEditorHandler()->setActive(static_cast<Editor*>(clientData)->getGroup(), *static_cast<const bool*>(value));
 }
 
-TW_CALL void GetOrthoEditorGroupStateCallback(void *value, void *clientData)
+void TW_CALL GetOrthoEditorGroupStateCallback(void *value, void *clientData)
 {
     *static_cast<bool *>(value) = EditOrthoProducer::getEditorHandler()->isActive(static_cast<Editor*>(clientData)->getGroup());
 }

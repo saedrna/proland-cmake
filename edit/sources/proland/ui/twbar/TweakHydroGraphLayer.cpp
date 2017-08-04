@@ -46,14 +46,14 @@
 namespace proland
 {
 
-static TW_CALL void SetCurvePotentialCallback(const void *value, void *clientData)
+static void TW_CALL SetCurvePotentialCallback(const void *value, void *clientData)
 {
     EditGraphOrthoLayer::SelectionData *e = (EditGraphOrthoLayer::SelectionData*)clientData;
     dynamic_cast<HydroCurve*>(e->c)->setPotential(*(float*)value);
     e->editor->updateSelectedCurve();
 }
 
-static TW_CALL void GetCurvePotentialCallback(void *value, void *clientData)
+static void TW_CALL GetCurvePotentialCallback(void *value, void *clientData)
 {
     ptr<HydroCurve> c = dynamic_cast<HydroCurve*>((*(EditGraphOrthoLayer::SelectionData*) clientData).c);
     if (c != NULL) {
