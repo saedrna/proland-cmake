@@ -475,6 +475,9 @@ void TileSampler::getTiles(Tree *parent, Tree **t, ptr<TerrainQuad> q, ptr<TaskG
                     }
                 } else {
                     (*t)->t = producer->getTile(q->level, q->tx, q->ty, 0);
+                    if ((*t)->t == NULL && Logger::ERROR_LOGGER != NULL) {
+                        Logger::ERROR_LOGGER->log("TERRAIN", "Insufficient tile cache size for '" + name + "' uniform");
+                    }
                     assert((*t)->t != NULL);
                 }
             } else {

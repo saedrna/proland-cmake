@@ -271,52 +271,53 @@ ptr<Task> TileCache::prefetchTile(int producerId, int level, int tx, int ty)
     pthread_mutex_lock((pthread_mutex_t*) mutex);
     Tile::TId id = Tile::getTId(producerId, level, tx, ty);
     ptr<Task> task;
-    if (usedTiles.find(id) == usedTiles.end()) {
-        if (unusedTiles.find(id) == unusedTiles.end()) {
-            // the requested tile is not in storage, it must be created
-            TileStorage::Slot *data = storage->newSlot();
-            if (data == NULL && unusedTiles.size() > 0) {
-                // evict least recently used tile to reuse its data storage
-                list<Tile*>::iterator li = unusedTilesOrder.begin();
-                Tile *t = *li;
-                data = t->data;
-                assert(data != NULL);
-                unusedTiles.erase(t->getTId());
-                unusedTilesOrder.erase(li);
-                deletedTiles.insert(make_pair(t->getTId(), t->task.get()));
-                delete t;
+    if (unusedTiles.find(id) == unusedTiles.end()) {
+        // the requested tile is not in storage, it must be created
+        TileStorage::Slot *data = storage->newSlot();
+        if (data == NULL && unusedTiles.size() == 0 && Logger::ERROR_LOGGER != NULL){
+            Logger::ERROR_LOGGER->log("TERRAIN", "Insufficient tile cache size for prefetch");            
+        }
+        if (data == NULL && unusedTiles.size() > 0) {
+            // evict least recently used tile to reuse its data storage
+            list<Tile*>::iterator li = unusedTilesOrder.begin();
+            Tile *t = *li;
+            data = t->data;
+            assert(data != NULL);
+            unusedTiles.erase(t->getTId());
+            unusedTilesOrder.erase(li);
+            deletedTiles.insert(make_pair(t->getTId(), t->task.get()));
+            delete t;
+        }
+        if (data != NULL) {
+            unsigned int deadline = 1u << 31u;
+            bool deletedTile = false;
+            map<Tile::TId, Task*>::iterator i = deletedTiles.find(id);
+            if (i != deletedTiles.end()) {
+                // if the task for creating this tile still exists, we reuse it
+                task = i->second;
+                deletedTile = true;
+                deletedTiles.erase(i);
             }
-            if (data != NULL) {
-                unsigned int deadline = 1u << 31u;
-                bool deletedTile = false;
-                map<Tile::TId, Task*>::iterator i = deletedTiles.find(id);
-                if (i != deletedTiles.end()) {
-                    // if the task for creating this tile still exists, we reuse it
-                    task = i->second;
-                    deletedTile = true;
-                    deletedTiles.erase(i);
+            task = producers[producerId]->createTile(level, tx, ty, data, deadline, task);
+            // creates the requested tile
+            Tile *t = new Tile(producerId, level, tx, ty, task, data);
+            list<Tile*>::iterator li = unusedTilesOrder.insert(unusedTilesOrder.end(), t);
+            unusedTiles[id] = li;
+            if (deletedTile) {
+                // if the tile data was not in storage and if the task to create it
+                // was reused from a deleted tile, we need to reexecute the task
+                // to recreate the tile data
+                if (scheduler == NULL) {
+                    task->setIsDone(false, 0, Task::DATA_NEEDED);
+                } else {
+                    scheduler->reschedule(task, Task::DATA_NEEDED, deadline);
                 }
-                task = producers[producerId]->createTile(level, tx, ty, data, deadline, task);
-                // creates the requested tile
-                Tile *t = new Tile(producerId, level, tx, ty, task, data);
-                list<Tile*>::iterator li = unusedTilesOrder.insert(unusedTilesOrder.end(), t);
-                unusedTiles[id] = li;
-                if (deletedTile) {
-                    // if the tile data was not in storage and if the task to create it
-                    // was reused from a deleted tile, we need to reexecute the task
-                    // to recreate the tile data
-                    if (scheduler == NULL) {
-                        task->setIsDone(false, 0, Task::DATA_NEEDED);
-                    } else {
-                        scheduler->reschedule(task, Task::DATA_NEEDED, deadline);
-                    }
-                }
-                /*if (Logger::DEBUG_LOGGER != NULL) {
-                    ostringstream oss;
-                    oss << "tiles: " << usedTiles.size() << " used, " << unusedTiles.size() << " reusable";
-                    Logger::DEBUG_LOGGER->log("CACHE", oss.str());
-                }*/
             }
+            /*if (Logger::DEBUG_LOGGER != NULL) {
+                ostringstream oss;
+                oss << "tiles: " << usedTiles.size() << " used, " << unusedTiles.size() << " reusable";
+                Logger::DEBUG_LOGGER->log("CACHE", oss.str());
+            }*/
         }
     }
     pthread_mutex_unlock((pthread_mutex_t*) mutex);
