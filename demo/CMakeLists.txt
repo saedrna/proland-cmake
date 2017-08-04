@@ -19,5 +19,7 @@ target_link_libraries(${EXENAME} proland-core proland-terrain proland-graph prol
 
 file(GLOB MESH_AND_SHADER *.glsl *.mesh *.xml *.png *.bat)
 install(TARGETS ${EXENAME} RUNTIME DESTINATION ${EXAMPLE_EXE_PATH})
-# install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../common/ DESTINATION ${EXAMPLE_EXE_PATH})
+foreach(dir archives meshes methods shaders textures ui)
+    install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/${dir} DESTINATION ${EXAMPLE_EXE_PATH})    
+endforeach(dir archives meshes methods shaders textures ui)
 install(FILES $<TARGET_PDB_FILE:${EXENAME}> ${MESH_AND_SHADER} DESTINATION ${EXAMPLE_EXE_PATH} OPTIONAL)
