@@ -1,16 +1,23 @@
 cmake_minimum_required(VERSION 2.6)
 
+if(BUILD_SHARED_LIBS AND MSVC)
+    add_definitions("-DPROLAND_API=__declspec(dllimport)")
+else()
+    add_definitions("-DPROLAND_API=")
+endif(BUILD_SHARED_LIBS AND MSVC)
+
 set(EXENAME demo)
 
 # Sources
 file(GLOB SOURCE_FILES *.cpp)
 
 set(EXAMPLE_EXE_PATH demo)
-set(EXECUTABLE_OUTPUT_PATH "${EXECUTABLE_OUTPUT_PATH}${EXAMPLE_EXE_PATH}")
-message(STATUS "Setting example output dir: " ${EXECUTABLE_OUTPUT_PATH})
 
 add_executable(${EXENAME} ${SOURCE_FILES})
-target_link_libraries(${EXENAME}  -Wl,--whole-archive proland-core proland-terrain proland-graph proland-edit proland-atmo proland-ocean proland-river proland-forest ork -Wl,--no-whole-archive pthread GL GLU GLEW glut glfw3 rt dl Xrandr Xinerama Xxf86vm Xext Xcursor Xrender Xfixes X11 tiff AntTweakBar stb_image tinyxml)
+target_link_libraries(${EXENAME} proland-core proland-terrain proland-graph proland-edit 
+    proland-atmo proland-ocean proland-river proland-forest ${PROLAND_3RDPARTY_LIBRARIES})
 
-
-
+file(GLOB MESH_AND_SHADER *.glsl *.mesh *.xml *.png *.bat)
+install(TARGETS ${EXENAME} RUNTIME DESTINATION ${EXAMPLE_EXE_PATH})
+# install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../common/ DESTINATION ${EXAMPLE_EXE_PATH})
+install(FILES $<TARGET_PDB_FILE:${EXENAME}> ${MESH_AND_SHADER} DESTINATION ${EXAMPLE_EXE_PATH} OPTIONAL)

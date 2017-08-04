@@ -68,7 +68,7 @@ if(BUILD_EXAMPLES)
     add_subdirectory(edit/examples)
 endif(BUILD_EXAMPLES)
 
-# add_subdirectory(demo)
+add_subdirectory(demo)
 
 #if(BUILD_TESTS)
 #	add_subdirectory(test)
