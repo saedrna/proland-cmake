@@ -42,7 +42,7 @@
 #ifndef _PROLAND_SEG2_H_
 #define _PROLAND_SEG2_H_
 
-#include "ork/math/pmath.h"
+#include "pmath.h"
 
 #include "ork/math/vec2.h"
 #include "ork/math/box2.h"

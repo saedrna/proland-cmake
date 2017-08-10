@@ -1,4 +1,3 @@
-// ATMOSPHERESHADER.GLSL
 /*
  * Proland: a procedural landscape rendering library.
  * Copyright (c) 2008-2011 INRIA
@@ -152,6 +151,7 @@ vec2 getTransmittanceUV(float r, float mu) {
     return vec2(uMu, uR);
 }
 
+#ifdef _FRAGMENT_
 void getTransmittanceRMu(out float r, out float muS) {
     r = gl_FragCoord.y / float(TRANSMITTANCE_H);
     muS = gl_FragCoord.x / float(TRANSMITTANCE_W);
@@ -163,6 +163,7 @@ void getTransmittanceRMu(out float r, out float muS) {
     muS = -0.15 + muS * (1.0 + 0.15);
 #endif
 }
+#endif
 
 vec2 getIrradianceUV(float r, float muS) {
     float uR = (r - Rg) / (Rt - Rg);
@@ -170,10 +171,12 @@ vec2 getIrradianceUV(float r, float muS) {
     return vec2(uMuS, uR);
 }
 
+#ifdef _FRAGMENT_
 void getIrradianceRMuS(out float r, out float muS) {
     r = Rg + (gl_FragCoord.y - 0.5) / (float(SKY_H) - 1.0) * (Rt - Rg);
     muS = -0.2 + (gl_FragCoord.x - 0.5) / (float(SKY_W) - 1.0) * (1.0 + 0.2);
 }
+#endif 
 
 vec4 texture4D(sampler3D table, float r, float mu, float muS, float nu)
 {
@@ -201,6 +204,7 @@ vec4 texture4D(sampler3D table, float r, float mu, float muS, float nu)
            texture(table, vec3((uNu + uMuS + 1.0) / float(RES_NU), uMu, uR)) * lerp;
 }
 
+#ifdef _FRAGMENT_
 void getMuMuSNu(float r, vec4 dhdH, out float mu, out float muS, out float nu) {
     float x = gl_FragCoord.x - 0.5;
     float y = gl_FragCoord.y - 0.5;
@@ -228,6 +232,7 @@ void getMuMuSNu(float r, vec4 dhdH, out float mu, out float muS, out float nu) {
     nu = -1.0 + floor(x / float(RES_MU_S)) / (float(RES_NU) - 1.0) * 2.0;
 #endif
 }
+#endif
 
 // ----------------------------------------------------------------------------
 // UTILITY FUNCTIONS

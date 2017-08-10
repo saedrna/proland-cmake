@@ -175,7 +175,7 @@ void main() {
 
 #ifdef _FRAGMENT_
 
-//#extension GL_EXT_gpu_shader4 : enable
+#extension GL_EXT_gpu_shader4 : enable
 
 #include "atmosphereShader.glhl"
 

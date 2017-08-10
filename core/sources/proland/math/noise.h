@@ -42,7 +42,7 @@
 #ifndef _PROLAND_NOISE_H_
 #define _PROLAND_NOISE_H_
 
-#include "ork/math/pmath.h"
+#include "pmath.h"
 
 namespace proland
 {

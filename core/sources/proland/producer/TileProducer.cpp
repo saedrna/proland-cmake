@@ -189,8 +189,6 @@ public:
                 TaskGraph::TaskIterator i = parent->getLastTasks();
                 while (i.hasNext()) {
                     ptr<Task> t = i.next();
-			// Lars F 03.06.2016
-			// Added .get() for proper pointer comparison
                     if (t.get() != this) {
                         parent->removeTask(t);
                     }

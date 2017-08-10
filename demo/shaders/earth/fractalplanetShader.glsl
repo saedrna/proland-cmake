@@ -1,4 +1,3 @@
-// FRACTALPLANETSHADER.GLSL
 /*
  * Proland: a procedural landscape rendering library.
  * Copyright (c) 2008-2011 INRIA

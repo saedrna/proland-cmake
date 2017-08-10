@@ -1,4 +1,3 @@
-// TEXTURETILE.GLSL
 /*
  * Proland: a procedural landscape rendering library.
  * Copyright (c) 2008-2011 INRIA
@@ -30,7 +29,7 @@
 #define QUADTREE_OFF
 
 #ifdef GL_EXT_texture_array
-//#extension GL_EXT_texture_array : enable
+#extension GL_EXT_texture_array : enable
 #endif
 
 struct samplerTile {

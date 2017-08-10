@@ -51,7 +51,7 @@
 #include "ork/resource/XMLResourceLoader.h"
 #include "ork/resource/ResourceTemplate.h"
 #include "ork/scenegraph/ShowLogTask.h"
-#include "ork/ui/GlfwWindow.h"
+#include "ork/ui/GlutWindow.h"
 
 #include "proland/TerrainPlugin.h"
 #include "proland/EditPlugin.h"
@@ -94,10 +94,10 @@ void resetSceneNode(ptr<SceneNode> node)
 
 static FileLogger::File *out(NULL);
 
-class ProlandDemo : public GlfwWindow, public Recordable, public ViewManager
+class ProlandDemo : public GlutWindow, public Recordable, public ViewManager
 {
 public:
-    ProlandDemo() : GlfwWindow(Window::Parameters().size(1024, 768)), t(0.0), countDown(0)
+    ProlandDemo() : GlutWindow(Window::Parameters().size(1024, 768)), t(0.0), countDown(0)
     {
     }
 
@@ -146,10 +146,9 @@ public:
             }
         }
  */       
-        
         this->t = t;
         ui->redisplay(t, dt);
-        GlfwWindow::redisplay(t, dt);
+        GlutWindow::redisplay(t, dt);
 
         if (countDown > 0) {
             countDown -= 1;
@@ -171,7 +170,7 @@ public:
         fb->setDepthTest(true, LESS);
 
         ui->reshape(x, y);
-        GlfwWindow::reshape(x, y);
+        GlutWindow::reshape(x, y);
         idle(false);
     }
 
@@ -181,7 +180,7 @@ public:
             updateResources();
         }
         ui->idle(damaged);
-        GlfwWindow::idle(damaged);
+        GlutWindow::idle(damaged);
     }
 
     bool mouseClick(button b, state s, modifier m, int x, int y)
@@ -353,7 +352,7 @@ public:
                     }
                     TIFFWriteTile(f, ibuf, i * w, (zoom - 1 - j) * h, 0, 0);
 
-                    GlfwWindow::redisplay(0.0, 0.0);
+                    GlutWindow::redisplay(0.0, 0.0);
                 }
             }
         }
@@ -522,7 +521,6 @@ void initProlandDemo(const string &archive, const string &data, const string &ev
 
 int main(int argc, char *argv[])
 {
-
     assert(argc > 2);
     initTerrainPlugin();
     initEditPlugin();

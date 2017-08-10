@@ -1,4 +1,3 @@
-// SKYSHADER.GLSL
 /*
  * Proland: a procedural landscape rendering library.
  * Copyright (c) 2008-2011 INRIA
@@ -68,6 +67,7 @@ layout(location=0) out vec4 data;
 void main() {
     vec3 WSD = getWorldSunDir();
     vec3 WCP = getWorldCameraPos();
+
     vec3 d = normalize(dir);
 
     vec3 sunColor = outerSunRadiance(relativeDir);
@@ -78,7 +78,6 @@ void main() {
     vec3 finalColor = sunColor * extinction + inscatter;
 
     data.rgb = hdr(finalColor);
-    //data.rgb = vec3(0.5,0.5,0.5)-WSD;
 }
 
 #endif

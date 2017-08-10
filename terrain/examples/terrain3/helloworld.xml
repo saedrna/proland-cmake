@@ -126,6 +126,6 @@
 
     <tweakBarManager name="ui">
         <editor id="scene" bar="editScene" exclusive="false"/>
-    </tweakBarManager> 
+    </tweakBarManager>
 
 </archive>

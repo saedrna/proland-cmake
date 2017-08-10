@@ -249,7 +249,7 @@
 
     <tweakScene name="editScene" scene="scene" active="false"/>
 
-    <tweakBarManager name="tweakBar" next="viewHandler">
+    <tweakBarManager name="tweakBar" minimized="true" next="viewHandler">
         <editor id="resources" bar="prolandTweakBar" permanent="true" exclusive="false"/>
         <editor id="view" bar="tweakEarthViews" permanent="true" exclusive="false"/>
         <editor id="scene" bar="editScene" exclusive="false"/>

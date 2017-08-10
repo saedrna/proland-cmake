@@ -46,13 +46,11 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <fcntl.h>
-
 #include <filesystem>
-
-// Lars F: addition, since they use close() below
 
 #include "ork/core/Object.h"
 
+namespace fs = std::tr2::sys;
 namespace proland
 {
 
@@ -63,7 +61,7 @@ float id(float x)
 
 bool fexists(const string &name)
 {
-    return std::tr2::sys::exists(name);
+    return fs::exists(name);
 }
 
 bool flog(const string &name)
@@ -85,8 +83,6 @@ bool flog(const string &name)
     }
     if (fexists(name))
     {
-        return false;
-    }else {
         printf("GENERATING %s\n", name.c_str());
         // file does not exist yet
         FILE *f;
@@ -94,6 +90,10 @@ bool flog(const string &name)
         fputs(name.c_str(), f);
         fclose(f);
         return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
@@ -166,9 +166,7 @@ void GetMinMaxColorsDXT1( const byte *colorBlock, byte *minColor, byte *maxColor
 #define ALIGN16( x ) __declspec(align(16)) x
 #else
 #define ALIGN16( x ) x __attribute__ ((aligned (16)))
-#endif
-
-
+#endif // _MSC_VER
 
 #define R_SHUFFLE_D( x, y, z, w ) (( (w) & 3 ) << 6 | ( (z) & 3 ) << 4 | ( (y) & 3 ) << 2 | ( (x) & 3 ))
 

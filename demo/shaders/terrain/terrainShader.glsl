@@ -1,4 +1,3 @@
-// TERRANSHADER.GLSL
 /*
  * Proland: a procedural landscape rendering library.
  * Copyright (c) 2008-2011 INRIA
@@ -52,8 +51,8 @@ uniform struct {
 
 #ifdef RIVERS
 
-//#extension GL_EXT_gpu_shader4 : enable
-//#extension GL_ARB_texture_rectangle : enable
+#extension GL_EXT_gpu_shader4 : enable
+#extension GL_ARB_texture_rectangle : enable
 
 #include "oceanBrdf.glhl"
 
@@ -154,7 +153,7 @@ void getSpriteParam(in float id, out SpriteParam param) {
     float nRows = ceil(float(maxRiverParticlesParams) / 4.0);
     int j = 0;
     for (float i = 0.0; i < nRows; i++) {
-        vec4 v = texelFetch(river.spriteParamTable, ivec2(i, id), 0);
+        vec4 v = texelFetch2D(river.spriteParamTable, ivec2(i, id), 0);
         params[j] = v.x;
         params[j + 1] = v.y;
         params[j + 2] = v.z;

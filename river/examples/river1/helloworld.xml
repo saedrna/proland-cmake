@@ -47,7 +47,7 @@
         residuals="groundResiduals1"/>
 
     <tileCache name="groundElevations" scheduler="defaultScheduler">
-        <gpuTileStorage tileSize="101" nTiles="2048"
+        <gpuTileStorage tileSize="101" nTiles="512"
             internalformat="RGB32F" format="RGB" type="FLOAT" min="LINEAR" mag="LINEAR"/>
     </tileCache>
     <elevationProducer name="groundElevations1" cache="groundElevations"
@@ -57,13 +57,13 @@
     </elevationProducer>
 
     <tileCache name="groundNormals" scheduler="defaultScheduler">
-        <gpuTileStorage tileSize="97" nTiles="2048"
+        <gpuTileStorage tileSize="97" nTiles="512"
             internalformat="RG8" format="RG" type="FLOAT" min="LINEAR" mag="LINEAR"/>
     </tileCache>
     <normalProducer name="groundNormals1" cache="groundNormals" elevations="groundElevations1"/>
 
     <tileCache name="groundOrthoGpu" scheduler="defaultScheduler">
-        <gpuTileStorage tileSize="196" nTiles="2048"
+        <gpuTileStorage tileSize="196" nTiles="512"
             internalformat="RGB8" format="RGB" type="UNSIGNED_BYTE" min="LINEAR_MIPMAP_LINEAR" mag="LINEAR"
             anisotropy="16"/>
     </tileCache>
@@ -72,7 +72,7 @@
     </orthoGpuProducer>
 
     <tileCache name="groundRiverMask" scheduler="defaultScheduler">
-        <gpuTileStorage tileSize="196" nTiles="2048"
+        <gpuTileStorage tileSize="196" nTiles="512"
             internalformat="R8" format="RED" type="UNSIGNED_BYTE" min="LINEAR" mag="LINEAR"/>
     </tileCache>
 

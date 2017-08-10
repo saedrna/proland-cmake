@@ -509,10 +509,6 @@ void LazyGraph::releaseNode(NodeId id)
     } else {
         // if there is no cache of unused resources, then we delete resources as
         // soon as they become unused
-        // DEBUG:
-        // Check if there are other strong pointer to this:
-        n.reset();
-        assert(i->second->ref_this.expired());
         delete i->second;
     }
 }
@@ -537,10 +533,6 @@ void LazyGraph::releaseCurve(CurveId id)
     if (curveCache->size > 0) {
         curveCache->add(i->second);
     } else {
-        // DEBUG:
-        // Check if there are other strong pointer to this:
-        c.reset();
-        assert(i->second->ref_this.expired());                
         delete i->second;
     }
 }
@@ -566,10 +558,6 @@ void LazyGraph::releaseArea(AreaId id)
     if (areaCache->size > 0) {
         areaCache->add(i->second);
     } else {
-        // DEBUG:
-        // Check if there are other strong pointer to this:
-        a.reset();
-        assert(i->second->ref_this.expired());   
         delete i->second;
     }
 }

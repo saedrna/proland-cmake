@@ -42,20 +42,17 @@
 #include <stdlib.h>
 
 #include "ork/core/FileLogger.h"
-#include "ork/math/vec3.h"
-#include "ork/math/vec4.h"
 #include "ork/render/FrameBuffer.h"
 #include "ork/resource/XMLResourceLoader.h"
 #include "ork/scenegraph/SceneManager.h"
-#include "ork/scenegraph/ShowLogTask.h"
-#include "ork/ui/GlfwWindow.h"
+#include "ork/ui/GlutWindow.h"
 
 #include "proland/util/TerrainViewController.h"
 
 using namespace ork;
 using namespace proland;
 
-class HelloWorld : public GlfwWindow
+class HelloWorld : public GlutWindow
 {
 public:
     ptr<SceneManager> manager;
@@ -63,41 +60,24 @@ public:
     int mouseX, mouseY;
     bool rotate;
 
-
-    HelloWorld() : GlfwWindow(Window::Parameters().size(1024, 768).version(3,3,true))
+    HelloWorld() : GlutWindow(Window::Parameters().size(1024, 768))
     {
         FileLogger::File *out = new FileLogger::File("log.html");
-       Logger::INFO_LOGGER = new FileLogger("INFO", out, Logger::INFO_LOGGER);
+        Logger::INFO_LOGGER = new FileLogger("INFO", out, Logger::INFO_LOGGER);
         Logger::WARNING_LOGGER = new FileLogger("WARNING", out, Logger::WARNING_LOGGER);
         Logger::ERROR_LOGGER = new FileLogger("ERROR", out, Logger::ERROR_LOGGER);
 
-         ptr<XMLResourceLoader> resLoader = new XMLResourceLoader();
+        ptr<XMLResourceLoader> resLoader = new XMLResourceLoader();
         resLoader->addPath(".");
-        resLoader->addPath("./config");
-        resLoader->addPath("../common");
         resLoader->addArchive("helloworld.xml");
 
         ptr<ResourceManager> resManager = new ResourceManager(resLoader, 8);
-       
-        ptr<SceneNode> root = resManager->loadResource("scene").cast<SceneNode>();
-
-        ptr<SceneNode> log = new SceneNode();
-        log->addFlag("overlay");
-        log->addMethod("draw", new Method(resManager->loadResource( "logMethod").cast<TaskFactory>()));
-        root->addChild(log);
-                                    
-        ptr<SceneNode> info = new SceneNode();
-        info->addFlag("overlay");
-        info->addMethod("draw", new Method(resManager->loadResource( "infoMethod").cast<TaskFactory>()));
-        root->addChild(info);
-
-
 
         manager = new SceneManager();
         manager->setResourceManager(resManager);
 
         manager->setScheduler(resManager->loadResource("defaultScheduler").cast<Scheduler>());
-        manager->setRoot(root);
+        manager->setRoot(resManager->loadResource("scene").cast<SceneNode>());
         manager->setCameraNode("camera");
         manager->setCameraMethod("draw");
 
@@ -106,15 +86,10 @@ public:
 
     virtual ~HelloWorld()
     {
-
     }
 
     virtual void redisplay(double t, double dt)
     {
-        //GLint dbits;
-        //glGetIntegerv(GL_DEPTH_BITS, &dbits);
-        //assert(glGetError()==0);
-
         controller->update();
         controller->setProjection();
 
@@ -124,7 +99,7 @@ public:
         manager->update(t, dt);
         manager->draw();
 
-        GlfwWindow::redisplay(t, dt);
+        GlutWindow::redisplay(t, dt);
 
         if (Logger::ERROR_LOGGER != NULL) {
             Logger::ERROR_LOGGER->flush();
@@ -136,12 +111,12 @@ public:
         ptr<FrameBuffer> fb = FrameBuffer::getDefault();
         fb->setDepthTest(true, LESS);
 		fb->setViewport(vec4<GLint>(0, 0, x, y));
-        GlfwWindow::reshape(x, y);
+        GlutWindow::reshape(x, y);
     }
 
     virtual void idle(bool damaged)
     {
-        GlfwWindow::idle(damaged);
+        GlutWindow::idle(damaged);
         if (damaged) {
             manager->getResourceManager()->updateResources();
         }
@@ -149,28 +124,6 @@ public:
 
     virtual bool mouseClick(button b, state s, modifier m, int x, int y)
     {
-        std::ostringstream oss;
-        oss << "Button ";
-        if(b == LEFT_BUTTON)
-            oss << "LEFT";
-        else if(b==MIDDLE_BUTTON)
-            oss << "MIDDLE";
-        else if(b==RIGHT_BUTTON)
-            oss << "RIGHT";
-                                           
-        oss << " is";
-                                                      
-        if(s==DOWN)
-            oss << " clicked";
-        else if(s==UP)
-            oss << " released";
-                                               
-        oss << ", at position" << x << ", " << y;
-        
-        oss << " with modifier m=" << m;
-        Logger::INFO_LOGGER->log("INFO", oss.str());
-
-        
         mouseX = x;
         mouseY = y;
         rotate = (m & CTRL) != 0;
@@ -207,7 +160,7 @@ public:
 
     virtual bool keyTyped(unsigned char c, modifier m, int x, int y)
     {
-        if (c == 'Q') {
+        if (c == 27) {
             ::exit(0);
         }
         return true;
@@ -216,9 +169,6 @@ public:
     virtual bool specialKey(key k, modifier m, int x, int y)
     {
         switch (k) {
-        case KEY_F1:
-            ShowLogTask::enabled = !ShowLogTask::enabled;
-            break;
         case KEY_F5:
             manager->getResourceManager()->updateResources();
             break;

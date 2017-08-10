@@ -96,13 +96,6 @@ void TileSampler::init(const string &name, ptr<TileProducer> producer)
     ptr<GPUTileStorage> storage = producer->getCache()->getStorage().cast<GPUTileStorage>();
     assert(storage != NULL);
     lastProgram = NULL;
-
-    // Init dummy texture to avoid unbound samplers
-    unsigned char *array = new unsigned char[4 * 4 * 4];
-    Texture::Parameters params = Texture::Parameters().wrapS(REPEAT).wrapT(REPEAT).min(NEAREST).mag(NEAREST);
-    CPUBuffer pixels(array);
-    dummyTileMap2D  = new Texture2D(4, 4, RGBA8, RGBA, UNSIGNED_BYTE, params, Buffer::Parameters(), pixels );
-    delete[] array;
 }
 
 TileSampler::~TileSampler()
@@ -356,25 +349,6 @@ ptr<Task> TileSampler::update(ptr<SceneManager> scene, ptr<TerrainQuad> root)
     return result;
 }
 
-void TileSampler::setDummyTileMap()
-{
-    checkUniforms();
-    if (tileMapU == NULL) {
-        return;
-    }
-
-    tileMapU->set(dummyTileMap2D);
-    /**
-     * We don't need to set quadInfo, poolInfo or camera[]
-    quadInfoU->set(vec4f((float) n->root->l, n->getSplitDistance(), 2.0f * k, 4.0f * k + 2.0f));
-    poolInfoU->set(vec4f(float(storage->getTileSize()), float(producer->getBorder()), 1.0f / w, 1.0f / h));
-    for (unsigned int i = 0; i < terrains.size(); ++i) {
-            vec3d camera = terrains[i]->getLocalCamera();
-            cameraU[i]->set(vec4d(camera.x - n->root->ox, camera.y - n->root->oy, (camera.z - TerrainNode::groundHeightAtCamera) / n->getDistFactor(), maxLevel).cast<float>());
-    }
-    */
-   return;
-}
 TileSampler::Tree::Tree(Tree *parent) : newTree(true), needTile(false), parent(parent), t(NULL)
 {
     children[0] = NULL;
@@ -475,9 +449,6 @@ void TileSampler::getTiles(Tree *parent, Tree **t, ptr<TerrainQuad> q, ptr<TaskG
                     }
                 } else {
                     (*t)->t = producer->getTile(q->level, q->tx, q->ty, 0);
-                    if ((*t)->t == NULL && Logger::ERROR_LOGGER != NULL) {
-                        Logger::ERROR_LOGGER->log("TERRAIN", "Insufficient tile cache size for '" + name + "' uniform");
-                    }
                     assert((*t)->t != NULL);
                 }
             } else {

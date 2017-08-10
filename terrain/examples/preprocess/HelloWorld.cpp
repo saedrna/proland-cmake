@@ -39,7 +39,7 @@
  * Main authors: Eric Bruneton, Antoine Begault, Guillaume Piolat.
  */
 
-#include "ork/resource/stbi/stb_image.h"
+#include "stbi/stb_image.h"
 
 #include "ork/core/FileLogger.h"
 #include "ork/render/FrameBuffer.h"
@@ -48,7 +48,7 @@
 #include "ork/scenegraph/AbstractTask.h"
 #include "ork/scenegraph/SceneManager.h"
 #include "ork/scenegraph/ShowLogTask.h"
-#include "ork/ui/GlfwWindow.h"
+#include "ork/ui/GlutWindow.h"
 
 #include "proland/preprocess/terrain/Preprocess.h"
 #include "proland/ui/BasicViewHandler.h"
@@ -89,7 +89,7 @@ public:
     }
 };
 
-class HelloWorld : public GlfwWindow, public ViewManager
+class HelloWorld : public GlutWindow, public ViewManager
 {
 public:
     ptr<SceneManager> scene;
@@ -97,7 +97,7 @@ public:
     ptr<BasicViewHandler> view;
     ptr<EventHandler> ui;
 
-    HelloWorld() : GlfwWindow(Window::Parameters().size(1024, 768))
+    HelloWorld() : GlutWindow(Window::Parameters().size(1024, 768))
     {
     }
 
@@ -111,20 +111,8 @@ public:
             updateResources();
         }
 
-        std::ostringstream oss;
-        oss << "Sim time: " << t*1.0e-6;
-        ShowInfoTask::setInfo("TIME", oss.str());
-
-        oss.str(std::string());
-        oss << "Camera height above ground: " << controller->getHeight();
-        ShowInfoTask::setInfo("TERRAINNODE1", oss.str());
-
-        oss.str(std::string());
-        oss << "Ground height below camera: " << controller->getGroundHeight();
-        ShowInfoTask::setInfo("TERRAINNODE2", oss.str());
-
         ui->redisplay(t, dt);
-        GlfwWindow::redisplay(t, dt);
+        GlutWindow::redisplay(t, dt);
 
         if (Logger::ERROR_LOGGER != NULL) {
             Logger::ERROR_LOGGER->flush();
@@ -137,13 +125,13 @@ public:
         fb->setDepthTest(true, LESS);
 		fb->setViewport(vec4<GLint>(0, 0, x, y));
         ui->reshape(x, y);
-        GlfwWindow::reshape(x, y);
+        GlutWindow::reshape(x, y);
         idle(false);
     }
 
     virtual void idle(bool damaged)
     {
-        GlfwWindow::idle(damaged);
+        GlutWindow::idle(damaged);
         if (damaged) {
             updateResources();
         }
