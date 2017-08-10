@@ -443,20 +443,26 @@ void HydroFlowTile::getLinkedEdges(vec2d &pos, DistCell *distCell, int riverId, 
 
     for (int i = 0; i < start->getCurveCount(); i++) {
         ptr<HydroCurve> c = start->getCurve(i).cast<HydroCurve>();
-        vector<int> v = riversToBanks.find(c->getId())->second;
-        for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
-            if (distCell->bankIds.find(*it) != distCell->bankIds.end()) {
-                bankIds.insert(*it);
+        if (riversToBanks.count(c->getId()))
+        {
+            vector<int> v = riversToBanks.find(c->getId())->second;
+            for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+                if (distCell->bankIds.find(*it) != distCell->bankIds.end()) {
+                    bankIds.insert(*it);
+                }
             }
         }
     }
 
     for (int i = 0; i < end->getCurveCount(); i++) {
         ptr<HydroCurve> c = end->getCurve(i).cast<HydroCurve>();
-        vector<int> v = riversToBanks.find(c->getAncestorId())->second;
-        for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
-            if (distCell->bankIds.find(*it) != distCell->bankIds.end()) {
-                bankIds.insert(*it);
+        if (riversToBanks.count(c->getAncestorId()))
+        {
+            vector<int> v = riversToBanks.find(c->getAncestorId())->second;
+            for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+                if (distCell->bankIds.find(*it) != distCell->bankIds.end()) {
+                    bankIds.insert(*it);
+                }
             }
         }
     }
