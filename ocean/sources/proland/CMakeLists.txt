@@ -9,7 +9,7 @@ message(STATUS "PROLAND_OCEAN_SOURCES: ${PROLAND_OCEAN_SOURCES}")
 # Atmo is not dependent on any other module
 include_directories(${PROLAND_CORE_SOURCES} ${PROJECT_SOURCE_DIR}/libraries ${PROLAND_OCEAN_SOURCES})
 
-file(GLOB SOURCE_FILES *.cpp ocean/*.cpp)
+file(GLOB SOURCE_FILES *.cpp ocean/*.cpp *.h ocean/*.h)
 
 # Libraries
 if(UNIX)

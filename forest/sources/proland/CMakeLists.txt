@@ -7,7 +7,7 @@ set(PROLAND_FOREST_SOURCES "${PROJECT_SOURCE_DIR}/forest/sources" CACHE INTERNAL
 message(STATUS "PROLAND_FOREST_SOURCES: ${PROLAND_FOREST_SOURCES}")
 
 # Forest is not dependent on any other module
-file(GLOB SOURCE_FILES *.cpp plants/*.cpp preprocess/trees/*.cpp)
+file(GLOB SOURCE_FILES *.cpp plants/*.cpp preprocess/trees/*.cpp *.h plants/*.h preprocess/trees/*.h)
 
 # Libraries
 if(UNIX)

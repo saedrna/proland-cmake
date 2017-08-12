@@ -6,7 +6,7 @@ message(STATUS "PROJECT_SOURCE_DIR: " ${PROJECT_SOURCE_DIR})
 set(PROLAND_GRAPH_SOURCES "${PROJECT_SOURCE_DIR}/graph/sources" CACHE INTERNAL "")
 message(STATUS "PROLAND_GRAPH_SOURCES: ${PROLAND_GRAPH_SOURCES}")
 
-file(GLOB SOURCE_FILES *.cpp */*.cpp graph/producer/*.cpp)
+file(GLOB SOURCE_FILES *.cpp */*.cpp graph/producer/*.cpp *.h */*.h graph/producer/*.h)
 
 # Libraries
 if(UNIX)
