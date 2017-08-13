@@ -42,7 +42,7 @@
 
 #include "proland/particles/ParticleProducer.h"
 
-#include "pmath.h"
+#include "ork/math/pmath.h"
 #include "ork/render/CPUBuffer.h"
 #include "ork/resource/ResourceTemplate.h"
 

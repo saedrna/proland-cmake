@@ -46,11 +46,17 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <fcntl.h>
-#include <filesystem>
+#ifdef _MSC_VER
+	#include <filesystem>
+	namespace fs = std::tr2::sys;
+#else
+	#include <boost/filesystem.hpp>
+	namespace fs = boost::filesystem;
+#endif
+
 
 #include "ork/core/Object.h"
 
-namespace fs = std::tr2::sys;
 namespace proland
 {
 

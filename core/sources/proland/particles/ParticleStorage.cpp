@@ -43,7 +43,7 @@
 
 #include <functional>
 #include <algorithm>
-#include "pmath.h"
+#include "ork/math/pmath.h"
 
 #include "ork/resource/ResourceTemplate.h"
 

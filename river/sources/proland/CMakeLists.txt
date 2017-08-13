@@ -16,6 +16,8 @@ endif(UNIX)
 # Static or shared?
 if(BUILD_SHARED_LIBS AND MSVC)
   add_definitions("-DPROLAND_API=__declspec(dllexport)")
+else()
+  add_definitions("-DPROLAND_API=")
 endif(BUILD_SHARED_LIBS AND MSVC)
 
 # Create a static library

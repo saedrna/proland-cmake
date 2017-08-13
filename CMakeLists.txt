@@ -2,6 +2,10 @@ project(Proland CXX C)
 cmake_minimum_required(VERSION 2.6)
 cmake_policy(VERSION 2.6)
 set(CMAKE_CXX_STANDARD 11)
+if(APPLE)
+    set(CMAKE_MACOSX_RPATH 1)
+endif(APPLE)
+
 
 SET(PROLAND_VERSION_MAJOR 4)
 SET(PROLAND_VERSION_MINOR 0)
@@ -22,14 +26,16 @@ endif(NOT CMAKE_BUILD_TYPE)
 find_package(ork REQUIRED) # ork::ork
 if(MSVC)
     find_package(pthread REQUIRED) # pthread::pthread 
-    find_package(anttweakbar REQUIRED) # anttweakbar::anttweakbar   
+    find_package(anttweakbar REQUIRED) # anttweakbar::anttweakbar
+else()
+    find_package(Boost REQUIRED COMPONENTS filesystem)
 endif(MSVC)
 find_package(TIFF REQUIRED) # TIFF::TIFF
 if(MSVC)
     set(PROLAND_3RDPARTY_LIBRARIES ork::ork pthread::pthread anttweakbar::anttweakbar TIFF::TIFF)
     set_target_properties(${PROLAND_3RDPARTY_LIBRARIES} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
 else(MSVC)
-    set(PROLAND_3RDPARTY_LIBRARIES ork::ork pthread AntTweakBar TIFF::TIFF)
+    set(PROLAND_3RDPARTY_LIBRARIES ork::ork pthread AntTweakBar TIFF::TIFF Boost::filesystem)
 endif(MSVC)
 
 option(BUILD_SHARED_LIBS    "Build shared library instead of static"   ON)

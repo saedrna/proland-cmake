@@ -14,6 +14,8 @@ file(GLOB SOURCE_FILES *.cpp */*.cpp ui/twbar/*.cpp *.h */*.h ui/twbar/*.h)
 set(LIBTYPE STATIC)
 if(BUILD_SHARED_LIBS AND MSVC)
   add_definitions("-DPROLAND_API=__declspec(dllexport)")
+else()
+  add_definitions("-DPROLAND_API=")
 endif(BUILD_SHARED_LIBS AND MSVC)
 
 # Create a static library

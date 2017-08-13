@@ -16,6 +16,8 @@ if(UNIX)
 endif(UNIX)
 if(BUILD_SHARED_LIBS AND MSVC)
   add_definitions("-DPROLAND_API=__declspec(dllexport)")
+else()
+  add_definitions("-DPROLAND_API=")
 endif(BUILD_SHARED_LIBS AND MSVC)
 # Create a library
 add_library(${LIBNAME} ${SOURCE_FILES})

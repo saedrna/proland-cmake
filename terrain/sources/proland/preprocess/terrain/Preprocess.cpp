@@ -44,7 +44,14 @@
 #include <algorithm>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <filesystem>
+#ifdef _MSC_VER
+    #include <filesystem>
+    namespace fs = std::tr2::sys;
+#else
+    #include <boost/filesystem.hpp>
+    namespace fs = boost::filesystem;
+#endif
+
 
 #include "ork/core/Object.h"
 #include "proland/preprocess/terrain/ApertureMipmap.h"
@@ -519,7 +526,7 @@ void createDir(const string &dir)
         }
     }
     
-    bool status = std::tr2::sys::create_directory(dir);
+    bool status = fs::create_directory(dir);
     
     if (status == false && errno != EEXIST) {
         fprintf(stderr, "Cannot create directory %s\n", dir.c_str());
