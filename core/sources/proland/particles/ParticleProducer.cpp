@@ -38,14 +38,14 @@
 /*
  * Main authors: Eric Bruneton, Antoine Begault, Guillaume Piolat.
  */
+#include <algorithm>
 
 #include "proland/particles/ParticleProducer.h"
 
-#include "ork/math/pmath.h"
+#include "pmath.h"
 #include "ork/render/CPUBuffer.h"
 #include "ork/resource/ResourceTemplate.h"
 
-#include <algorithm>
 using namespace std;
 using namespace ork;
 
@@ -194,7 +194,7 @@ ptr<Texture2D> ParticleProducer::copyToTexture(ptr<Texture2D> t, int paramCount,
             getParams(this, p, params + 4 * width * h);
             ++h;
         }
-        maxHeight = std::max(maxHeight, h);
+        maxHeight = max(maxHeight, h);
     }
 
     if (maxHeight > 0) {

@@ -46,8 +46,7 @@
 #include "proland/terrain/SphericalDeformation.h"
 #include "proland/terrain/CylindricalDeformation.h"
 
-// Lars F mod
-#include "ork/math/pmath.h"
+#include "pmath.h"
 
 #define HORIZON_SIZE 256
 

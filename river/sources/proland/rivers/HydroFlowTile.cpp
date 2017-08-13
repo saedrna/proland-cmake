@@ -41,7 +41,7 @@
 
 #include "proland/rivers/HydroFlowTile.h"
 
-#include "ork/math/pmath.h"
+#include "pmath.h"
 
 #include "ork/core/Logger.h"
 #include "ork/core/Timer.h"

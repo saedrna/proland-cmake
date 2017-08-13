@@ -6,7 +6,7 @@ message(STATUS "PROJECT_SOURCE_DIR: " ${PROJECT_SOURCE_DIR})
 set(PROLAND_RIVER_SOURCES "${PROJECT_SOURCE_DIR}/river/sources" CACHE INTERNAL "")
 message(STATUS "PROLAND_RIVER_SOURCES: ${PROLAND_RIVER_SOURCES}")
 
-file(GLOB SOURCE_FILES *.cpp */*.cpp rivers/graph/*.cpp)
+file(GLOB SOURCE_FILES *.cpp */*.cpp rivers/graph/*.cpp *.h */*.h rivers/graph/*.h)
 
 # Libraries
 if(UNIX)

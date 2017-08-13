@@ -207,12 +207,6 @@ void OrthoProducer::init(ptr<TileCache> cache, ptr<TileProducer> residualTiles,
     } else {
         channels = (int) cache->getStorage().cast<GPUTileStorage>()->getTexture(0)->getComponents();
     }
-    
-    // Create the dummy texture 
-    unsigned char *array = new unsigned char[6 * 16 * 16 * 4];
-    dummy = new Texture2DArray(16, 16, 6, RGBA8,
-        RGBA, UNSIGNED_BYTE, Texture::Parameters().wrapS(REPEAT).wrapT(REPEAT).min(NEAREST).mag(NEAREST), Buffer::Parameters(), CPUBuffer(array));
-    delete[] array;
 }
 
 OrthoProducer::~OrthoProducer()
@@ -322,15 +316,7 @@ bool OrthoProducer::doCreateTile(int level, int tx, int ty, TileStorage::Slot *d
         coarseLevelSamplerU->set(t);
         coarseLevelOSLU->set(vec4f((dx + 0.5f) / parentGpuData->getWidth(), (dy + 0.5f) / parentGpuData->getHeight(), 1.0f / parentGpuData->getWidth(), parentGpuData->l));
     } else {
-        // Same error here as with TileSamplerZ,
-        // here the courseLevelSampler is not bound (but also never
-        // used), but then GL complains.
         coarseLevelOSLU->set(vec4f(-1.0f, -1.0f, -1.0f, -1.0f));
-
-        // Lets just test with a dummy texture
-        // TODO: if this works, replace with a global dummy texture used
-        // for supressing these errors
-        coarseLevelSamplerU->set(dummy);
     }
 
     if (residualTiles != NULL && residualTiles->hasTile(level, tx, ty)) {

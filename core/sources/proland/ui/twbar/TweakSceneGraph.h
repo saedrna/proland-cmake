@@ -182,7 +182,6 @@ private:
     ptr<Texture> dummy2D;
     ptr<Texture> dummy2DA;
     ptr<Texture> dummy3D;
-
     MODE mode;
 
     vec2f lastPos;

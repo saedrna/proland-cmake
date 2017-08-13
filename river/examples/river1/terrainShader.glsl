@@ -25,8 +25,8 @@
  * Authors: Eric Bruneton, Antoine Begault, Guillaume Piolat.
  */
 
-//#extension GL_EXT_gpu_shader4 : enable
-//#extension GL_ARB_texture_rectangle : enable
+// #extension GL_EXT_gpu_shader4 : enable
+// #extension GL_ARB_texture_rectangle : enable
 
 struct samplerTile {
     sampler2DArray tilePool; // tile cache

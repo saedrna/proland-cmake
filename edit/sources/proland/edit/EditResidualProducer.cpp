@@ -38,9 +38,10 @@
 /*
  * Main authors: Eric Bruneton, Antoine Begault, Guillaume Piolat.
  */
-#include <algorithm>
 
 #include "proland/edit/EditResidualProducer.h"
+
+#include <algorithm>
 
 #include "ork/core/Logger.h"
 #include "ork/resource/ResourceTemplate.h"

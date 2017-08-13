@@ -9,7 +9,7 @@ message(STATUS "PROLAND_ATMO_SOURCES: ${PROLAND_ATMO_SOURCES}")
 # Atmo is not dependent on any other module
 include_directories(${PROLAND_CORE_SOURCES} ${PROJECT_SOURCE_DIR}/libraries ${PROLAND_ATMO_SOURCES})
 
-file(GLOB SOURCE_FILES preprocess/atmo/*.cpp)
+file(GLOB SOURCE_FILES preprocess/atmo/*.cpp preprocess/atmo/*.h)
 
 # Libraries
 if(UNIX)

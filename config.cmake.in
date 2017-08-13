@@ -5,10 +5,12 @@ find_package(ork REQUIRED)
 include("${CMAKE_CURRENT_LIST_DIR}/proland-targets.cmake")
 check_required_components("proland")
 
-if(BUILD_SHARED_LIBS AND MSVC)
+set(PROLAND_SHARED @BUILD_SHARED_LIBS@)
+
+if(PROLAND_SHARED AND MSVC)
     set_target_properties(proland::proland-core proland::proland-terrain proland::proland-forest proland::proland-graph proland::proland-river proland::proland-edit
         PROPERTIES INTERFACE_COMPILE_DEFINITIONS "-DPROLAND_API=__declspec(dllimport)")
 else()
     set_target_properties(proland::proland-core proland::proland-terrain proland::proland-forest proland::proland-graph proland::proland-river proland::proland-edit
         PROPERTIES INTERFACE_COMPILE_DEFINITIONS "-DPROLAND_API=")
-endif(BUILD_SHARED_LIBS AND MSVC)
+endif(PROLAND_SHARED AND MSVC)

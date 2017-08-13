@@ -111,7 +111,7 @@ void main() {
     float light = max(-(deformation.tangentFrameToWorld * n).y, 0.0);
     data.rgb *= light;
 
-    //data.r += mod(dot(floor(deformation.offset.xy / deformation.offset.z + 0.5), vec2(1.0)), 2.0) * 0.5;
+    data.r += mod(dot(floor(deformation.offset.xy / deformation.offset.z + 0.5), vec2(1.0)), 2.0) * 0.5;
 }
 
 #endif

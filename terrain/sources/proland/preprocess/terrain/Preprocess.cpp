@@ -41,12 +41,10 @@
 
 #include "proland/preprocess/terrain/Preprocess.h"
 
+#include <algorithm>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <errno.h>
-#include <direct.h>
-
-#include <algorithm>
+#include <filesystem>
 
 #include "ork/core/Object.h"
 #include "proland/preprocess/terrain/ApertureMipmap.h"
@@ -510,11 +508,7 @@ public:
 
 void createDir(const string &dir)
 {
-    // Bug here, as unsigned int may not be the same as
-    // size_t, and hence the if-claue below may fail
-    // Change to size_t
-    size_t index = dir.find_last_of('/');
-    
+    unsigned int index = dir.find_last_of('/');
     if (index != string::npos) {
         FILE *f;
         fopen(&f, dir.substr(0, index).c_str(), "r");
@@ -524,8 +518,10 @@ void createDir(const string &dir)
             createDir(dir.substr(0, index));
         }
     }
-    int status = _mkdir(dir.c_str());
-    if (status != 0 && errno != EEXIST) {
+    
+    bool status = std::tr2::sys::create_directory(dir);
+    
+    if (status == false && errno != EEXIST) {
         fprintf(stderr, "Cannot create directory %s\n", dir.c_str());
         throw exception();
     }

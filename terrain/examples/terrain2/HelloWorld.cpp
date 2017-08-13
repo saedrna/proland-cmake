@@ -45,8 +45,7 @@
 #include "ork/render/FrameBuffer.h"
 #include "ork/resource/XMLResourceLoader.h"
 #include "ork/scenegraph/SceneManager.h"
-#include "ork/ui/GlfwWindow.h"
-#include "ork/scenegraph/ShowLogTask.h"
+#include "ork/ui/GlutWindow.h"
 
 #include "proland/TerrainPlugin.h"
 #include "proland/terrain/TerrainNode.h"
@@ -55,16 +54,15 @@
 using namespace ork;
 using namespace proland;
 
-class HelloWorld : public GlfwWindow
+class HelloWorld : public GlutWindow
 {
 public:
     ptr<SceneManager> manager;
     ptr<PlanetViewController> controller;
     int mouseX, mouseY;
     bool rotate;
-    bool display_extended_info;
 
-    HelloWorld() : GlfwWindow(Window::Parameters().size(1024, 768))
+    HelloWorld() : GlutWindow(Window::Parameters().size(1024, 768))
     {
         FileLogger::File *out = new FileLogger::File("log.html");
         Logger::INFO_LOGGER = new FileLogger("INFO", out, Logger::INFO_LOGGER);
@@ -73,37 +71,19 @@ public:
 
         ptr<XMLResourceLoader> resLoader = new XMLResourceLoader();
         resLoader->addPath(".");
-        resLoader->addPath("../common");
         resLoader->addArchive("helloworld.xml");
 
         ptr<ResourceManager> resManager = new ResourceManager(resLoader, 8);
-
-        ptr<SceneNode> root = resManager->loadResource("scene").cast<SceneNode>();
-
-        ptr<SceneNode> log = new SceneNode();
-        log->addFlag("overlay");
-        log->addMethod("draw", new Method(
-            resManager->loadResource("logMethod").cast<TaskFactory>()));
-        root->addChild(log);
-                                             
-        ptr<SceneNode> info = new SceneNode();
-        info->addFlag("overlay");
-        info->addMethod("draw", new Method(
-            resManager->loadResource("infoMethod").cast<TaskFactory>()));
-        root->addChild(info);
 
         manager = new SceneManager();
         manager->setResourceManager(resManager);
 
         manager->setScheduler(resManager->loadResource("defaultScheduler").cast<Scheduler>());
-        manager->setRoot(root);
+        manager->setRoot(resManager->loadResource("scene").cast<SceneNode>());
         manager->setCameraNode("camera");
         manager->setCameraMethod("draw");
 
         controller = new PlanetViewController(manager->getCameraNode(), 6360000.0);
-
-        display_extended_info = true;
-
     }
 
     virtual ~HelloWorld()
@@ -115,27 +95,6 @@ public:
         controller->setGroundHeight(TerrainNode::groundHeightAtCamera);
         controller->update();
         controller->setProjection();
-        
-        if(display_extended_info) {
-            std::ostringstream oss;
-            oss << "Sim time: " << t*1.0e-6;
-            ShowInfoTask::setInfo("TIME", oss.str());
-                           
-            int mx, my;
-            this->getMousePosition(&mx, &my);
-            oss.str(std::string());
-            oss << "Mouse: " << mx << ", " << my;
-            ShowInfoTask::setInfo("MOUSE", oss.str());
-
-            oss.str(std::string());
-            oss << "Ground height at camera: " << 
-                TerrainNode::groundHeightAtCamera;
-            ShowInfoTask::setInfo("TERRAINNODE1", oss.str());
-        
-            oss.str(std::string());
-            oss << "Height below camera: " << controller->getHeight()- TerrainNode::groundHeightAtCamera;
-            ShowInfoTask::setInfo("TERRAINNODE2", oss.str());
-        }
 
         ptr<FrameBuffer> fb = FrameBuffer::getDefault();
         fb->clear(true, false, true);
@@ -143,7 +102,7 @@ public:
         manager->update(t, dt);
         manager->draw();
 
-        GlfwWindow::redisplay(t, dt);
+        GlutWindow::redisplay(t, dt);
 
         if (Logger::ERROR_LOGGER != NULL) {
             Logger::ERROR_LOGGER->flush();
@@ -155,12 +114,12 @@ public:
         ptr<FrameBuffer> fb = FrameBuffer::getDefault();
         fb->setDepthTest(true, LESS);
 		fb->setViewport(vec4<GLint>(0, 0, x, y));
-        GlfwWindow::reshape(x, y);
+        GlutWindow::reshape(x, y);
     }
 
     virtual void idle(bool damaged)
     {
-        GlfwWindow::idle(damaged);
+        GlutWindow::idle(damaged);
         if (damaged) {
             manager->getResourceManager()->updateResources();
         }
@@ -216,8 +175,6 @@ public:
         case KEY_F5:
             manager->getResourceManager()->updateResources();
             break;
-        case KEY_F2:
-            display_extended_info = !display_extended_info;
         default:
             break;
         }

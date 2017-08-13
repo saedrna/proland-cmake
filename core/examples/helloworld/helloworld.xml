@@ -33,9 +33,6 @@
         <foreach var="o" flag="object" culling="true">
             <callMethod name="$o.draw"/>
         </foreach>
-        <foreach var="o" flag="overlay">
-            <callMethod name="$o.draw"/>
-        </foreach>
     </sequence>
 
     <terrainNode name="myTerrain" size="500" zmin="-1" zmax="1" splitFactor="2" maxLevel="7"/>

@@ -105,6 +105,7 @@ configure_package_config_file(
     "config.cmake.in"
     "${project_config}"
     INSTALL_DESTINATION "${config_install_dir}"
+    PATH_VARS BUILD_SHARED_LIBS
 )
 
 install(

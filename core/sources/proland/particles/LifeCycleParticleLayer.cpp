@@ -38,12 +38,12 @@
 /*
  * Main authors: Eric Bruneton, Antoine Begault, Guillaume Piolat.
  */
+#include <algorithm>
 
 #include "proland/particles/LifeCycleParticleLayer.h"
 
 #include "ork/resource/ResourceTemplate.h"
 
-#include <algorithm>
 using namespace std;
 using namespace ork;
 
@@ -147,7 +147,7 @@ float LifeCycleParticleLayer::getIntensity(ParticleStorage::Particle *p)
             return 1.0f;
         } else {
             t -= activeDelay;
-            return std::max(0.0f, 1.0f - t / fadeOutDelay);
+            return max(0.0f, 1.0f - t / fadeOutDelay);
         }
     }
 }

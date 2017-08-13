@@ -6,7 +6,7 @@ message(STATUS "PROJECT_SOURCE_DIR: " ${PROJECT_SOURCE_DIR})
 set(PROLAND_EDIT_SOURCES "${PROJECT_SOURCE_DIR}/edit/sources" CACHE INTERNAL "")
 message(STATUS "PROLAND_EDIT_SOURCES: ${PROLAND_EDIT_SOURCES}")
 
-file(GLOB SOURCE_FILES *.cpp */*.cpp ui/twbar/*.cpp)
+file(GLOB SOURCE_FILES *.cpp */*.cpp ui/twbar/*.cpp *.h */*.h ui/twbar/*.h)
 
 # Libraries
 

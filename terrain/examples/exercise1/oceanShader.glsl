@@ -279,8 +279,8 @@ vec3 skymapRadiance(vec2 tau, vec2 dtaudx, vec2 dtaudy, vec3 sunDir)
     float l = acos(sunDir.z) * (28.0 / (PI / 2.0));
     float layer = floor(l);
     float a = l - layer;
-    vec3 l0 = textureArrayGrad(skymapSampler, vec3(uv, layer), duvdx, duvdy).rgb;
-    vec3 l1 = textureArrayGrad(skymapSampler, vec3(uv, layer + 1.0), duvdx, duvdy).rgb;
+    vec3 l0 = textureGrad(skymapSampler, vec3(uv, layer), duvdx, duvdy).rgb;
+    vec3 l1 = textureGrad(skymapSampler, vec3(uv, layer + 1.0), duvdx, duvdy).rgb;
     return (l0 * (1.0 -  a) + l1 * a) * 100.0;
 }
 

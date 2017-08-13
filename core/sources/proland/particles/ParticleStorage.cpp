@@ -41,10 +41,9 @@
 
 #include "proland/particles/ParticleStorage.h"
 
-#include <algorithm>
 #include <functional>
-
-#include "ork/math/pmath.h"
+#include <algorithm>
+#include "pmath.h"
 
 #include "ork/resource/ResourceTemplate.h"
 

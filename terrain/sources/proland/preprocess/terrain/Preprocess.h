@@ -207,7 +207,7 @@ PROLAND_API void preprocessDem(InputMap *src, int dstMinTileSize, int dstTileSiz
  *     longitudes, and the y coordinate to latitudes (i.e. using the
  *     equirectangular projection, aka the equidirectional projection,
  *     equidistant cylindrical projection, geographic projection, or plate
- *     carr?e projection). Only the x channel is used.
+ *     carr�e projection). Only the x channel is used.
  * @param dstMinTileSize the size of the root tile (without borders). E.g., a size
  *     of 24 corresponds to a full size of 24+5=29.
  * @param dstTileSize the maximum size of the tiles (without borders). E.g., a size
@@ -243,7 +243,7 @@ PROLAND_API void preprocessSphericalDem(InputMap *src, int dstMinTileSize, int d
  *     longitudes, and the y coordinate to latitudes (i.e. using the
  *     equirectangular projection, aka the equidirectional projection,
  *     equidistant cylindrical projection, geographic projection, or plate
- *     carr?e projection). Only the x channel is used.
+ *     carr�e projection). Only the x channel is used.
  * @param srcFolder where the preprocessed elevation map files are stored (these
  *     files are supposed to have been generated with #preprocessSphericalDem).
  * @param minLevel the minimum quadtree level used to sample visibility around

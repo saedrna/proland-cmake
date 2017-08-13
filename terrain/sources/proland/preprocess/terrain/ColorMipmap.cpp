@@ -116,7 +116,7 @@ void ColorMipmap::generate(int rootLevel, int rootTx, int rootTy, bool dxt, bool
     if (border == 0) {
 		flags += 2;
 	}
-    int fchannels = dxt ? std::max(3, channels) : channels;
+    int fchannels = dxt ? max(3, channels) : channels;
 
     if (flog(file.c_str())) {
         FILE *f;
@@ -176,7 +176,7 @@ void ColorMipmap::generateResiduals(bool jpg, int jpg_quality, const string &inp
         if (border == 0) {
             oflags += 2;
         }
-        int ochannels = dxt ? std::max(3, channels) : channels;
+        int ochannels = dxt ? max(3, channels) : channels;
 
         FILE *f;
         fopen(&f, output.c_str(), "wb");
@@ -266,7 +266,7 @@ unsigned char* ColorMipmap::readTile(int tx, int ty)
     char buf[256];
     unsigned char *data = new unsigned char[(tileSize + 2*border) * (tileSize + 2*border) * channels];
     int nTiles = 1 << currentLevel;
-    int nTilesPerFile = std::min(nTiles, 16);
+    int nTilesPerFile = min(nTiles, 16);
     int dx = tx / nTilesPerFile;
     int dy = ty / nTilesPerFile;
     tx = tx % nTilesPerFile;
